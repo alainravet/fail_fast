@@ -2,6 +2,8 @@ require 'yaml'
 require 'erb'
 
 class FailFast
+  ERB_TEMPLATE = File.dirname(__FILE__) + '/report.txt.erb'
+
   class Error < StandardError ; end
   class ErrorDetails < Struct.new(:key, :kind, :value) ;
     def has_key_and_kind?(akey, akind)
@@ -78,7 +80,7 @@ private
 
 
   def raise_and_print_errors
-    text = FailFast.errors.join("\n")
-    raise Error.new(text)
+    @errors = @@errors 
+    raise "\n\n\n" + ERB.new(File.read(ERB_TEMPLATE)).result(binding) + "\n\n"
   end
 end
