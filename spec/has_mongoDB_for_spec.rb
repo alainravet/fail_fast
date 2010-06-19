@@ -1,11 +1,14 @@
+require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+
 describe 'has_mongoDB_for()' do
 
   context 'when the mongo server cannot be reached' do
-    before(:each) { Mongo::Connection.should_receive(:new).and_raise(Mongo::ConnectionFailure) }
+    before(:each) { Mongo::Connection.should_receive(:new).any_number_of_times.and_raise(Mongo::ConnectionFailure) }
 
     it_should_raise_an_error('when the mongoDB server connection failed', /mongoDB.*test\/unreachable_mongoDB_server.*not/) {
       has_mongoDB_for 'test/unreachable_mongoDB_server'
     }
+    it_should_raise_an_error('when the key is invalid', /missing or blank value.*not_a_valid_key/) { has_mongoDB_for 'not_a_valid_key' }
   end
 
   context 'when the mongo server can be reached' do

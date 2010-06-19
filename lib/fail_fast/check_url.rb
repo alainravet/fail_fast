@@ -11,7 +11,7 @@ class FailFast
     #     has_url_for 'test/server_url', :reachable => true, :may_add_trailing_slash => true
     #
     def has_url_for(key, *params)
-      has_value_for key
+      return unless has_value_for key
 
       p = key_value_regexp_options(key, params)
       key, options = p.key, p.options

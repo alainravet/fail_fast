@@ -8,9 +8,9 @@ class FailFast
     #  has_mongoDB_for 'test/unknown_mongoDB_db', :check_database => false
     #
     def has_mongoDB_for(key, *params)
-      has_value_for key
-      has_value_for "#{key}/host"
-      has_value_for "#{key}/database"
+      return unless has_value_for key
+      return unless has_value_for "#{key}/host"
+      return unless has_value_for "#{key}/database"
 
       p = key_value_regexp_options(key, params)
       key, options = p.key, p.options

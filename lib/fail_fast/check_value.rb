@@ -4,11 +4,13 @@ class FailFast
     # Usage
     #  has_value_for 'str_key'
     #  has_value_for :sym_key, /localhost/
-    #
+    # returns
+    #   true if succesful, false otherwise
     def has_value_for(key, *params)
       p = key_value_regexp_options(key, params)
       key, options = p.key, p.options
 
+      nof_errors = @errors.size
       if blank?(p.value)
         @errors << "  - missing or blank value for : #{key.to_s}"
 
@@ -21,6 +23,7 @@ class FailFast
       elsif hash?(options) && array?(options[:in])
         @errors << "  - value for #{key.to_s} not in array #{options[:in].inspect}" unless options[:in].include?(p.value)
       end
+      no_new_error = nof_errors == @errors.size
     end
 
     # Usage

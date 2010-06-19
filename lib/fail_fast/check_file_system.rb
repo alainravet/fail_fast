@@ -7,7 +7,7 @@ class FailFast
     #   directory_exists_for 'foo/config'
     #
     def directory_exists_for(key, *params)
-      has_value_for key
+      return unless has_value_for key
 
       p = key_value_regexp_options(key, params)
       key, options = p.key, p.options
@@ -25,7 +25,7 @@ class FailFast
     #   file_exists_for 'foo/config/app.yml'
     #
     def file_exists_for(key, *params)
-      has_value_for key
+      return unless has_value_for key
 
       p = key_value_regexp_options(key, params)
       key, options = p.key, p.options

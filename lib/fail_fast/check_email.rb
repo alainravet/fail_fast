@@ -5,7 +5,7 @@ class FailFast
     #  has_email_for 'test/admin_email'
     #
     def has_email_for(key, *params)
-      has_value_for key
+      return unless has_value_for key
 
       p = key_value_regexp_options(key, params)
       key, options = p.key, p.options
