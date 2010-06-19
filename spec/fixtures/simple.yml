@@ -1,0 +1,28 @@
+first_key: premier
+key_with_blank_value: <%= '' %>
+last_key: dernier
+test:
+  host: localhost
+  url: http://example.com/index.html
+  url_localhost: http://localhost/index.html
+  email: test@example.com
+  url_reachable: http://example.com
+  url_not_reachable: http://xxx.zzz
+  mongoDB:
+    host: localhost
+    database: sample_mongoDB
+
+  unreachable_mongoDB_server:
+    host: unreachable_host
+    database: "vasco-dpplus-auditlog-dev"
+
+  unknown_mongoDB_db:
+    host: localhost
+    database: unknown_mongoDB_db
+
+  a_directory:  <%= SPEC_DIR + '/fixtures' %>
+
+  a_file: <%= SPEC_DIR + '/fixtures/simple.yml' %>
+
+number_six: 6
+letter_x: x
