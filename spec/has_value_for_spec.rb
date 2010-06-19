@@ -19,6 +19,11 @@ describe 'has_value_for()' do
     it_should_raise_an_error('when one of the keys is absent', /missing or blank value.*key_not_present/) {
       has_values_for :first_key, :key_not_present
     }
+    context 'because the key path is invalid' do
+      it_should_raise_an_error('when the key path is invalid', /missing or blank value.*INVALID\/mongoDB\/host/) {
+        has_value_for 'INVALID/mongoDB/host'
+      }
+    end
   end
 
   context 'when the value should match a regexp' do

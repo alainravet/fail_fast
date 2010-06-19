@@ -37,7 +37,7 @@ private
 
 
   def value_for_deep_key(key)
-    key.to_s.split('/').inject(@hash) { |h, k| h[k] }
+    key.to_s.split('/').inject(@hash) { |h, k| h[k] } rescue nil
   end
 
 
