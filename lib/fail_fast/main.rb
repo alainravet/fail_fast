@@ -3,21 +3,26 @@ require 'erb'
 
 class FailFast
   class Error < StandardError ; end
+  class ErrorDetails < Struct.new(:key, :kind, :value) ;
+    def has_key_and_kind?(akey, akind)
+      (key.to_s == akey.to_s) && kind.to_sym == akind.to_sym
+    end
+  end
   class Params < Struct.new(:key, :value, :regexp, :options) ; end
 
   def initialize(path, prefix=nil)
     @path   = path
     @prefix = prefix
-    @errors = []
+    @@errors = []
   end
 
-  def self.config_file(path, prefix=nil)
-    new(path, prefix)
+  def self.errors
+    @@errors
   end
 
   def check(&block)
     if missing_file?(@path)
-      @errors << "The file #{@path} could not be found."
+      FailFast.errors << ErrorDetails.new(nil, :config_file_not_found, @path)
     else
       @hash = YAML.load(ERB.new(File.read(@path)).result) || {}
       self.instance_eval(&block)
@@ -35,7 +40,11 @@ private
   def hash?(  value)        value.is_a?(Hash)                                     end
   def missing_file?(path)  !File.exist?(path)                                     end
 
-
+  # Usage
+  #   value_for_deep_key('one/two/three')
+  # returns
+  #   @hash[:one][:two][:three]
+  #
   def value_for_deep_key(key)
     key.to_s.split('/').inject(@hash) { |h, k| h[k] } rescue nil
   end
@@ -64,12 +73,12 @@ private
   end
 
   def errors?
-    !@errors.empty?
+    !FailFast.errors.empty?
   end
 
 
   def raise_and_print_errors
-    text = @errors.join("\n")
+    text = FailFast.errors.join("\n")
     raise Error.new(text)
   end
 end

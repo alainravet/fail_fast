@@ -12,7 +12,7 @@ class FailFast
 
       value = value_for_deep_key(key)
       if EmailValidator.invalid_email_address?(value)
-        @errors << "  - value for #{key.to_s} is not an email"
+        FailFast.errors << ErrorDetails.new(key, :not_an_email, value)
       end
     end
   end

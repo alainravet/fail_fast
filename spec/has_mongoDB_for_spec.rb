@@ -5,10 +5,10 @@ describe 'has_mongoDB_for()' do
   context 'when the mongo server cannot be reached' do
     before(:each) { Mongo::Connection.should_receive(:new).any_number_of_times.and_raise(Mongo::ConnectionFailure) }
 
-    it_should_raise_an_error('when the mongoDB server connection failed', /mongoDB.*test\/unreachable_mongoDB_server.*not/) {
+    it_should_raise_an_error('test/unreachable_mongoDB_server', :mongoDB_server_not_found, 'when the mongoDB server connection failed') {
       has_mongoDB_for 'test/unreachable_mongoDB_server'
     }
-    it_should_raise_an_error('when the key is invalid', /missing or blank value.*not_a_valid_key/) { has_mongoDB_for 'not_a_valid_key' }
+    it_should_raise_an_error('not_a_valid_key', :missing_value, 'when the key is invalid') { has_mongoDB_for 'not_a_valid_key' }
   end
 
   context 'when the mongo server can be reached' do
@@ -22,7 +22,7 @@ describe 'has_mongoDB_for()' do
       has_mongoDB_for 'test/mongoDB'
     }
 
-    it_should_raise_an_error('when the database cannot be found on the mongoDB', /mongoDB.*unknown_mongoDB_db.*test\/unknown_mongoDB_db.*not/) {
+    it_should_raise_an_error('test/unknown_mongoDB_db', :mongoDB_db_not_found,'when the database cannot be found on the mongoDB') {
       has_mongoDB_for 'test/unknown_mongoDB_db'
     }
 

@@ -18,11 +18,11 @@ class FailFast
 
       value = value_for_deep_key(key)
       if UrlValidator.invalid_url?(value)
-        @errors << "  - value for #{key.to_s} is not a url"
+        FailFast.errors << ErrorDetails.new(key, :not_a_url, value)
         return
       end
       if true==options.delete(:reachable) && UrlValidator.unreachable_url?(value, options)
-        @errors << "  - the url #{value} for #{key.to_s} is not reachable"
+        FailFast.errors << ErrorDetails.new(key, :url_not_reachable, value)
       end
     end
   end

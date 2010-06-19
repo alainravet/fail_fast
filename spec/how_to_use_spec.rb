@@ -31,12 +31,6 @@ describe "typical usage" do
     end
   end
 
-  example 'explict config_file (long notation)' do
-    FailFast.config_file(SIMPLE_FILE_PATH).check do
-      has_value_for :first_key
-    end
-  end
-
   before(:each) { fake_the_remote_services() }
 end
 

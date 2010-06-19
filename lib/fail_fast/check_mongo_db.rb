@@ -21,13 +21,13 @@ class FailFast
       begin
         @conn = Mongo::Connection.new(host, port)
       rescue Mongo::ConnectionFailure
-        @errors << "  - the mongoDB server for #{key.to_s} could not be reached."
+        FailFast.errors << ErrorDetails.new(key, :mongoDB_server_not_found, p.value)
         return
       end
 
       must_check_db = !(false == options[:check_database])
       if must_check_db && !@conn.database_names.include?(db)
-        @errors << "  - the mongoDB #{db} for #{key.to_s} could not be found."
+        FailFast.errors << ErrorDetails.new(key, :mongoDB_db_not_found, p.value)
       end
     end
 

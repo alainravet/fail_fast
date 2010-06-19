@@ -15,7 +15,7 @@ class FailFast
       path = value_for_deep_key(key)
 
       unless File.exists?(path) && File.directory?(path)
-        @errors << "  - directory  #{path.inspect} does not exist"
+        FailFast.errors << ErrorDetails.new(key, :directory_not_found, p.value)
       end
     end
 
@@ -33,7 +33,7 @@ class FailFast
       path = value_for_deep_key(key)
 
       unless File.exists?(path) && File.file?(path)
-        @errors << "  - file  #{path.inspect} does not exist"
+        FailFast.errors << ErrorDetails.new(key, :file_not_found, p.value)
       end
     end
 
