@@ -58,6 +58,7 @@ You can also test values in direct mode (specify the value, instead of obtaining
 
       directory_exists  '/tmp'
       file_exists       '/Users/me/.bash_profile'
+      has_mongoDB   'localhost', 'db_app_1'
 
 
 You can also specify a key prefix :
