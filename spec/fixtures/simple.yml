@@ -24,5 +24,9 @@ test:
 
   a_file: <%= SPEC_DIR + '/fixtures/simple.yml' %>
 
+db_connection:
+  adapter: mysql
+  database: a_db
+
 number_six: 6
 letter_x: x
