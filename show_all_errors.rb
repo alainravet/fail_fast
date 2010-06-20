@@ -56,4 +56,8 @@ FailFast(SPEC_DIR + '/fixtures/simple.yml').check do
   fake_mongo_db_absent
   has_mongoDB      'localhost', 'not_a_known_db'
   has_mongoDB_for 'test/unknown_mongoDB_db'       # a mongoDB, but the DB is unknown
+
+#test ActiveRecord
+  has_active_record_db      :host => 'localhost', :adapter => 'mysql', :database=> 'some-db'
+  has_active_record_db_for  'db_connection'
 end

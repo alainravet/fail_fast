@@ -50,6 +50,9 @@ Early in your project boot sequence, insert tests scripts like this :
       # just ensure the mongoDB server can be reached :
       has_mongoDB_for 'test/unknown_mongoDB_db', :check_database => false
 
+      # test an active_record connection
+      has_active_record_db_for 'production/db_connection'
+
       directory_exists_for  'public/assets'
       file_exists_for       'public/500_custom.html'
     end
@@ -58,7 +61,9 @@ You can also test values in direct mode (specify the value, instead of obtaining
 
       directory_exists  '/tmp'
       file_exists       '/Users/me/.bash_profile'
-      has_mongoDB   'localhost', 'db_app_1'
+
+      has_mongoDB           'localhost', 'db_app_1'
+      has_active_record_db  :host => 'localhost', :adapter => 'mysql', :database=> 'a-db', :username => 'root'
 
 
 You can also specify a key prefix :
