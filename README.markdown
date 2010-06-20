@@ -1,5 +1,9 @@
 # fail_fast : don't start your application if some preconditions are not met.
 
+## How to install :
+
+    gem install fail_fast
+
 ## How to use :
 
 Early in your project boot sequence insert code like
@@ -14,13 +18,41 @@ Early in your project boot sequence insert code like
     end
 
     FailFast('path_to/config.yml', prefix=Rails.env).check do
-      has\_values_for 'author/fname', 'author/lname'
-      has\_url_for 'bug_tracker/url', :reachable => true
-      has\_email_for 'newsletter/to_address'
+      has_values_for 'author/fname', 'author/lname'
+      has_url_for 'bug_tracker/url', :reachable => true
+      has_email_for 'newsletter/to_address'
 
       directory_exists_for  '/tmp'
       file_exists_for       'public/nda.pdf'
     end
+
+If it fails, you'll get a report like this :
+    
+    +------------------------------------------------------------------------------------------
+    |   FAIL_FAST error : "./spec/fixtures/simple.yml"
+    |   key prefix  = nil
+    +------------------------------------------------------------------------------------------
+    |      error                                   key                                value
+    +------------------------------------------------------------------------------------------
+    |  * missing_value                          first_keyNOT                                                       
+    |  * missing_value                          last_keyNOT                                                        
+    |  * missing_value                          number_sixNOT                                                      
+    |  * missing_value                          testNOT/mongoDB/database                                           
+    |  * value_does_not_match                   last_key                            dernier                        
+    |  * not_an_email                           test/host                           localhost                      
+    |  * not_a_url                              test/host                           localhost                      
+    |  * url_not_reachable                      test/url_not_reachable              http://xxx.zzz                 
+    |  * directory_not_found                                                        /foobarbaz                     
+    |  * directory_not_found                    test/a_file                         ./spec/fixtures/simple.yml     
+    |  * file_not_found                                                             /tmp/foo/bar/??nOTaFile        
+    |  * file_not_found                         test/a_directory                    ./spec/fixtures                
+    |  * mongoDB_server_not_found                                                   10.0.0.123                     
+    |  * mongoDB_server_not_found               test/mongoDB                        localhost                      
+    |  * mongoDB_db_not_found                                                       not_a_known_db                 
+    |  * mongoDB_db_not_found                   test/unknown_mongoDB_db             unknown_mongoDB_db             
+    |  * active_record_db_connection_error                                          Unknown database 'some-db'     
+    |  * active_record_db_connection_error      db_connection                       Unknown database 'a_db'        
+    +------------------------------------------------------------------------------------------
 
 
 ## Info :
@@ -72,8 +104,8 @@ You can also add custom rules, not related to any config files :
 
 Test the file system :
 
-      directory_exists_for  'public/assets'
-      file_exists_for       'public/500_custom.html'
+      directory_exists_for  'assets-upload_dir'
+      file_exists_for       'assets-nda_pdf_file'
 
 Test external services :
 

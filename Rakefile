@@ -11,6 +11,7 @@ begin
     gem.homepage = "http://github.com/alainravet/fail_fast"
     gem.authors = ["Alain Ravet"]
     gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.add_development_dependency "activerecord"
     gem.add_development_dependency "mongo"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
