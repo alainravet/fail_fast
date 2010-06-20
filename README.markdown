@@ -24,6 +24,8 @@ Early in your project boot sequence insert code like
 
       directory_exists_for  '/tmp'
       file_exists_for       'public/nda.pdf'
+
+      fail "I don't work on Sunday" if 0 == Time.now.wday
     end
 
 If it fails, you'll get a report like this :
@@ -51,7 +53,8 @@ If it fails, you'll get a report like this :
     |  * mongoDB_db_not_found                                                       not_a_known_db                 
     |  * mongoDB_db_not_found                   test/unknown_mongoDB_db             unknown_mongoDB_db             
     |  * active_record_db_connection_error                                          Unknown database 'some-db'     
-    |  * active_record_db_connection_error      db_connection                       Unknown database 'a_db'        
+    |  * active_record_db_connection_error      db_connection                       Unknown database 'a_db'
+    |  * fail                                                                       a custom failure message
     +------------------------------------------------------------------------------------------
 
 

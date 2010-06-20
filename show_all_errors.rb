@@ -60,4 +60,7 @@ FailFast(SPEC_DIR + '/fixtures/simple.yml').check do
 #test ActiveRecord
   has_active_record_db      :host => 'localhost', :adapter => 'mysql', :database=> 'some-db'
   has_active_record_db_for  'db_connection'
+
+#misc
+  fail 'a custom failure message'
 end

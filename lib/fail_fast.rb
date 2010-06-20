@@ -6,6 +6,7 @@ require 'fail_fast/check_mongo_db'
 require 'fail_fast/check_active_record_db'
 require 'fail_fast/check_url'
 require 'fail_fast/check_email'
+require 'fail_fast/misc'
 
 
 def FailFast(path, prefix=nil)
