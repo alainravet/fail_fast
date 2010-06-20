@@ -15,8 +15,11 @@ fake_the_remote_services
 
 $LOAD_PATH.unshift(File.dirname(__FILE__)+'/lib')
 SPEC_DIR = File.dirname(__FILE__)+'/spec'
+
 require 'fail_fast'
-FailFast(File.dirname(__FILE__) + '/spec/fixtures/simple.yml').check do
+FailFast(SPEC_DIR + '/fixtures/simple.yml').check do
+
+#keyed mode
   has_value_for   :first_keyNOT                   # single absent key
   has_values_for  :last_keyNOT, 'number_sixNOT'   # multiple absent keys
   has_value_for 'testNOT/mongoDB/database'        # invalid yaml path
@@ -31,4 +34,8 @@ FailFast(File.dirname(__FILE__) + '/spec/fixtures/simple.yml').check do
 
   directory_exists_for  'test/a_file'             # not a directory
   file_exists_for       'test/a_directory'        # not a file
+
+# direct mode
+  directory_exists  '/foobarbaz'                  # not a directory
+  file_exists       '/tmp/foo/bar/??nOTaFile'     # not a file
 end

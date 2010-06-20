@@ -1,7 +1,29 @@
 class FailFast
   module CheckFileSystem
 
-    # Ensure the directory exists (and is a directory)
+    # Ensure the value is an existing directory
+    #
+    # Usage
+    #   directory_exists '/tmp'
+    #
+    def directory_exists(path, *params)
+      unless File.exists?(path) && File.directory?(path)
+        FailFast.errors << ErrorDetails.new(nil, :directory_not_found, path)
+      end
+    end
+
+    # Ensure the value is an existing file
+    #
+    # Usage
+    #   file_exists '~/.bash_profile'
+    #
+    def file_exists(path, *params)
+      unless File.exists?(path) && File.file?(path)
+        FailFast.errors << ErrorDetails.new(nil, :file_not_found, path)
+      end
+    end
+
+    # Ensure the key value is an existing directory
     #
     # Usage
     #   directory_exists_for 'foo/config'
@@ -19,7 +41,7 @@ class FailFast
       end
     end
 
-    # Ensure the file exists (and is a file)
+    # Ensure the key value is an existing file exists
     #
     # Usage
     #   file_exists_for 'foo/config/app.yml'

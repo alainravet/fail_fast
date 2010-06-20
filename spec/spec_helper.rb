@@ -31,7 +31,7 @@ module DSLMacros
     end
 
     def it_should_raise_an_error(key, kind, msg, &block)
-      it "should raise an error #{key}-#{msg}" do
+      it "should raise an error #{kind}-#{key}-#{msg}" do
         begin
           FailFast(SIMPLE_FILE_PATH).check do
             raise "BUG : @@errorz should be empty \n#{FailFast.errors.inspect}"  unless FailFast.errors.empty?
@@ -47,6 +47,28 @@ module DSLMacros
             fail "\ne2e\nshould have raised a #{kind.inspect} error for #{key.inspect}, but raised instead #{FailFast.errors.inspect}"
           elsif 2 <= FailFast.errors.length
             fail "\ne2f\nshould have raised only a #{kind} error for #{key}\n#{FailFast.errors.join("\n")}"
+          end
+        end
+
+      end
+    end
+    def it_should_raise_a_direct_error(value, kind, msg, &block)
+      it "should raise an error #{kind}-#{value}-#{msg}" do
+        begin
+          FailFast(SIMPLE_FILE_PATH).check do
+            raise "BUG : @@errorz should be empty \n#{FailFast.errors.inspect}"  unless FailFast.errors.empty?
+            self.instance_eval(&block)
+          end
+        rescue => e
+          # uncomment the next line after the refactoring/once error are no longer raise
+          #  raise e
+        ensure
+          if FailFast.errors.empty?
+            fail "\ne2d\nshould have raised a #{kind} error for #{value} \n==#{e}"
+          elsif FailFast.errors.length == 1 && !FailFast.errors.first.has_value_and_kind?(value, kind)
+            fail "\ne2e\nshould have raised a #{kind.inspect} error for #{value.inspect}\n, but raised instead\n#{FailFast.errors.inspect}"
+          elsif 2 <= FailFast.errors.length
+            fail "\ne2f\nshould have raised only 1 #{kind} error for #{value}\nbut raised instead\n#{FailFast.errors.join("\n")}"
           end
         end
 

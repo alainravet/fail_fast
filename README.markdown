@@ -29,7 +29,7 @@ Early in your project boot sequence, insert tests scripts like this :
 
     require 'fail_fast'
   
-    FailFast.config_file("path_to/config.yml").check do
+    FailFast("path_to/config.yml").check do
 
       # ensure non-blank values are specified :
       has_value_for :application_name
@@ -53,6 +53,11 @@ Early in your project boot sequence, insert tests scripts like this :
       directory_exists_for  'public/assets'
       file_exists_for       'public/500_custom.html'
     end
+
+You can also test values in direct mode (specify the value, instead of obtaining it from the config file)
+
+      directory_exists  '/tmp'
+      file_exists       '/Users/me/.bash_profile'
 
 
 You can also specify a key prefix :
