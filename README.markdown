@@ -88,7 +88,7 @@ You can also add custom rules, not related to any config files :
       file_exists           '/Users/me/.bash_profile'
       has_mongoDB           'localhost', 'db_app_1'
       has_active_record_db  :host => 'dbserv', :adapter => 'mysql', :database => 'db'
-
+      fail "I don't work on Sunday" if (0 == Time.now.wday)
 
 ### _keyed_ commands (linked to a value found in a yaml file) :
 

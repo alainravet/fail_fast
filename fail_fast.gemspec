@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{fail_fast}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alain Ravet"]
@@ -33,6 +33,7 @@ Gem::Specification.new do |s|
      "lib/fail_fast/check_url.rb",
      "lib/fail_fast/check_value.rb",
      "lib/fail_fast/main.rb",
+     "lib/fail_fast/misc.rb",
      "lib/fail_fast/report.txt.erb",
      "show_all_errors.rb",
      "spec/file_is_empty_spec.rb",
@@ -46,6 +47,7 @@ Gem::Specification.new do |s|
      "spec/has_url_for_spec.rb",
      "spec/has_value_for_spec.rb",
      "spec/how_to_use_spec.rb",
+     "spec/misc_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
@@ -64,6 +66,7 @@ Gem::Specification.new do |s|
      "spec/has_url_for_spec.rb",
      "spec/has_value_for_spec.rb",
      "spec/how_to_use_spec.rb",
+     "spec/misc_spec.rb",
      "spec/spec_helper.rb"
   ]
 
@@ -73,13 +76,16 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 1.2.9"])
+      s.add_development_dependency(%q<activerecord>, [">= 0"])
       s.add_development_dependency(%q<mongo>, [">= 0"])
     else
       s.add_dependency(%q<rspec>, [">= 1.2.9"])
+      s.add_dependency(%q<activerecord>, [">= 0"])
       s.add_dependency(%q<mongo>, [">= 0"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 1.2.9"])
+    s.add_dependency(%q<activerecord>, [">= 0"])
     s.add_dependency(%q<mongo>, [">= 0"])
   end
 end
