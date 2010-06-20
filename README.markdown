@@ -10,17 +10,17 @@ Early in your project boot sequence insert code like
 
     require 'fail_fast'
     FailFast('database.yml').check do
-      has_active_record_db_for Rails.env
+      has_active_record_db_for  Rails.env
     end
 
     FailFast('database.mongo.yml').check do
-      has_mongoDB_for Rails.env
+      has_mongoDB_for   Rails.env
     end
 
     FailFast('path_to/config.yml', prefix=Rails.env).check do
-      has_values_for 'author/fname', 'author/lname'
-      has_url_for 'bug_tracker/url', :reachable => true
-      has_email_for 'newsletter/to_address'
+      has_values_for    'author/fname', 'author/lname'
+      has_email_for     'newsletter/to_address'
+      has_url_for       'bug_tracker/url', :reachable => true
 
       directory_exists_for  '/tmp'
       file_exists_for       'public/nda.pdf'
@@ -81,10 +81,10 @@ You can also add custom rules, not related to any config files :
 
 ### _free/direct_ commands (not linked to the yaml file contents) :
 
-    directory_exists  '/tmp'
-    file_exists       '/Users/me/.bash_profile'
-    has_mongoDB           'localhost', 'db_app_1'
-    has_active_record_db  :host => 'dbserv', :adapter => 'mysql', :database => 'db'
+      directory_exists      '/tmp'
+      file_exists           '/Users/me/.bash_profile'
+      has_mongoDB           'localhost', 'db_app_1'
+      has_active_record_db  :host => 'dbserv', :adapter => 'mysql', :database => 'db'
 
 
 ### _keyed_ commands (linked to a value found in a yaml file) :
@@ -93,8 +93,8 @@ You can also add custom rules, not related to any config files :
 
 *presence :*
 
-      has_value_for :application_name
-      has_values_for 'author/fname', 'author/lname'
+      has_value_for   :application_name
+      has_values_for  'author/fname', 'author/lname'
 
 *contents <-> a regexp or pattern :*
 
@@ -109,15 +109,15 @@ Test the file system :
 
 Test external services :
 
-    # is a webserver up ?
-    has_url_for 'bug_tracker/url', :reachable => true
-    has_url_for 'bug_tracker/url', :reachable => true, :may_add_trailing_slash => true
+      # is a webserver up ?
+      has_url_for     'bug_tracker/url', :reachable => true
+      has_url_for     'bug_tracker/url', :reachable => true, :may_add_trailing_slash => true
 
 
-    # can we connect to a mongoDB db/server :
-    has_mongoDB_for 'test/mongoDB'
-    has_mongoDB_for 'test/unknown_mongoDB_db', :check_database => false
+      # can we connect to a mongoDB db/server :
+      has_mongoDB_for   'test/mongoDB'
+      has_mongoDB_for   'test/unknown_mongoDB_db', :check_database => false
 
-    # can we connect to a SQL db :
-    has_active_record_db_for 'production/db_connection'
+      # can we connect to a SQL db :
+      has_active_record_db_for 'production/db_connection'
 
