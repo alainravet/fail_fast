@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{fail_fast}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alain Ravet"]
-  s.date = %q{2010-06-20}
+  s.date = %q{2010-06-21}
   s.description = %q{raises an error if the yaml contents of a config file does not pass a test script.}
   s.email = %q{alainravet@gmail.com}
   s.extra_rdoc_files = [
