@@ -20,12 +20,17 @@ Early in your project boot sequence insert code like
     FailFast('path_to/config.yml', prefix=Rails.env).check do
       has_values_for    'author/fname', 'author/lname'
       has_email_for     'newsletter/to_address'
-      has_url_for       'bug_tracker/url', :reachable => true
+
+      only_if Rails.env.production? do
+        has_url_for       'bug_tracker/url', :reachable => true
+      end
 
       directory_exists_for  '/tmp'
       file_exists_for       'public/nda.pdf'
 
-      fail "I don't work on Sunday" if 0 == Time.now.wday
+      skip_if Rails.env.development? do
+        fail "I don't work on Sunday" if 0 == Time.now.wday
+       end
     end
 
 If it fails, you'll get a report like this :
@@ -124,3 +129,9 @@ Test external services :
       # can we connect to a SQL db :
       has_active_record_db_for 'production/db_connection'
 
+Misc :
+      fail 'message'
+
+Control commands :
+      skip_if <condition> do .. end
+      only_if <condition> do .. end
