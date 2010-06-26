@@ -4,7 +4,7 @@ require 'fail_fast/main'
 Dir.glob(File.dirname(__FILE__) + '/fail_fast/extensions/*.rb') {|file| require file }
 
 
-def FailFast(path, prefix=nil)
-  FailFast.new(path, prefix)
+def FailFast(config_file_path, keys_prefix=nil)
+  FailFast.new(config_file_path, keys_prefix)
 end
 

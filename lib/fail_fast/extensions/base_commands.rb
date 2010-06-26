@@ -1,5 +1,5 @@
 class FailFast
-  module Misc
+  module BaseCommands
 
     # Usage
     #   if 0 == Time.now.wday
@@ -18,4 +18,4 @@ class FailFast
     end
   end
 end
-FailFast.send  :include, FailFast::Misc
+FailFast.send  :include, FailFast::BaseCommands
