@@ -1,6 +1,8 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "ConfigCheck on an unknown file" do
+  before(:all) { capture_stdout }
+  after( :all) { restore_stdout }
 
   it "should not raise an error in new()" do
     FailFast(UNKNOWN_FILE_PATH)

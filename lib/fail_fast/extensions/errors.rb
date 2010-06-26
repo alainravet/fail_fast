@@ -20,9 +20,10 @@ class FailFast
   module Errors
 
   private
-    def raise_and_print_errors
+    def print_errors_and_exit
       @errors = FailFast.errors
-      raise "\n\n\n" + ERB.new(File.read(ERB_TEMPLATE)).result(binding) + "\n\n"
+      puts "\n\n\n" + ERB.new(File.read(ERB_TEMPLATE)).result(binding) + "\n\n"
+      exit
     end
 
   end

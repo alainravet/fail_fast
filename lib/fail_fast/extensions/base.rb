@@ -8,7 +8,7 @@ class FailFast
       else
         check_all_rules(&block)
       end
-      raise_and_print_errors if errors?
+      print_errors_and_exit if errors?
     end
 
   private

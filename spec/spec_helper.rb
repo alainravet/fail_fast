@@ -9,11 +9,29 @@ UNKNOWN_FILE_PATH =   'an_unknown_file_path'
 EMPTY_FILE_PATH   =   File.expand_path(File.dirname(__FILE__) + '/fixtures/empty.yml')
 SIMPLE_FILE_PATH  =   File.expand_path(File.dirname(__FILE__) + '/fixtures/simple.yml')
 
+module Kernel
+  def exit(param=nil)
+    raise "Kernel.exit was called"
+  end
+end
+
 
 module DSLMacros
+  module InstanceMethods
+    def capture_stdout
+      @@original_stdout = STDOUT
+      $stdout = StringIO.new
+    end
+
+    def restore_stdout
+      $stdout = @@original_stdout
+    end
+  end
   module ClassMethods
+
     def it_should_not_raise_an_error(msg, &block)
       it "should not raise an error #{msg}" do
+        capture_stdout
         begin
           FailFast(SIMPLE_FILE_PATH).check do
             raise "BUG : @@errorz should be empty \n#{FailFast.errors.inspect}"  unless FailFast.errors.empty?
@@ -26,12 +44,13 @@ module DSLMacros
             fail "ZZshould not have raised an error, but it raised\n#{FailFast.errors.join("\n")}"
           end
         end
-
+        restore_stdout
       end
     end
 
     def it_should_raise_an_error(key, kind, msg, &block)
       it "should raise an error #{kind}-#{key}-#{msg}" do
+        capture_stdout
         begin
           FailFast(SIMPLE_FILE_PATH).check do
             raise "BUG : @@errorz should be empty \n#{FailFast.errors.inspect}"  unless FailFast.errors.empty?
@@ -49,11 +68,12 @@ module DSLMacros
             fail "\ne2f\nshould have raised only a #{kind} error for #{key}\n#{FailFast.errors.join("\n")}"
           end
         end
-
+        restore_stdout
       end
     end
     def it_should_raise_a_direct_error(value, kind, msg, &block)
       it "should raise an error #{kind}-#{value}-#{msg}" do
+        capture_stdout
         begin
           FailFast(SIMPLE_FILE_PATH).check do
             raise "BUG : @@errorz should be empty \n#{FailFast.errors.inspect}"  unless FailFast.errors.empty?
@@ -71,7 +91,7 @@ module DSLMacros
             fail "\ne2f\nshould have raised only 1 #{kind} error for #{value}\nbut raised instead\n#{FailFast.errors.join("\n")}"
           end
         end
-
+        restore_stdout
       end
     end
 
@@ -79,6 +99,7 @@ module DSLMacros
 
   def self.included(receiver)
     receiver.extend(ClassMethods)
+    receiver.send :include, InstanceMethods
   end
 end
 Spec::Runner.configure do |config|
