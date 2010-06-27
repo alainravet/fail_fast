@@ -8,7 +8,7 @@ class FailFast
     #
     def directory_exists(path, *params)
       unless File.exists?(path) && File.directory?(path)
-        FailFast.errors << ErrorDetails.new(nil, :directory_not_found, path)
+        add_error ErrorDetails.new(nil, :directory_not_found, path)
       end
     end
 
@@ -19,7 +19,7 @@ class FailFast
     #
     def file_exists(path, *params)
       unless File.exists?(path) && File.file?(path)
-        FailFast.errors << ErrorDetails.new(nil, :file_not_found, path)
+        add_error ErrorDetails.new(nil, :file_not_found, path)
       end
     end
 
@@ -37,7 +37,7 @@ class FailFast
       path = value_for_deep_key(key)
 
       unless File.exists?(path) && File.directory?(path)
-        FailFast.errors << ErrorDetails.new(key, :directory_not_found, p.value)
+        add_error ErrorDetails.new(key, :directory_not_found, p.value)
       end
     end
 
@@ -55,7 +55,7 @@ class FailFast
       path = value_for_deep_key(key)
 
       unless File.exists?(path) && File.file?(path)
-        FailFast.errors << ErrorDetails.new(key, :file_not_found, p.value)
+        add_error ErrorDetails.new(key, :file_not_found, p.value)
       end
     end
 

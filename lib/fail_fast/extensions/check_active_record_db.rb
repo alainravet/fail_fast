@@ -19,7 +19,7 @@ class FailFast
         @error_message  = e.message
       end
       unless @success
-        FailFast.errors << ErrorDetails.new(nil, :active_record_db_connection_error, @error_message)
+        add_error ErrorDetails.new(nil, :active_record_db_connection_error, @error_message)
       end
     end
 
@@ -46,7 +46,7 @@ class FailFast
         @error_message  = e.message
       end
       unless @success
-        FailFast.errors << ErrorDetails.new(key, :active_record_db_connection_error, @error_message)
+        add_error ErrorDetails.new(key, :active_record_db_connection_error, @error_message)
       end
     end
 

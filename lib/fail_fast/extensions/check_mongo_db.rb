@@ -16,12 +16,12 @@ class FailFast
         port = options.delete(:port)
         @conn = Mongo::Connection.new(host, port, options)
       rescue Mongo::ConnectionFailure
-        FailFast.errors << ErrorDetails.new(nil, :mongoDB_server_not_found, host)
+        add_error ErrorDetails.new(nil, :mongoDB_server_not_found, host)
         return
       end
 
       if db && !@conn.database_names.include?(db)
-        FailFast.errors << ErrorDetails.new(nil, :mongoDB_db_not_found, db)
+        add_error ErrorDetails.new(nil, :mongoDB_db_not_found, db)
       end
     end
 
@@ -45,13 +45,13 @@ class FailFast
       begin
         @conn = Mongo::Connection.new(host, port)
       rescue Mongo::ConnectionFailure
-        FailFast.errors << ErrorDetails.new(key, :mongoDB_server_not_found, host)
+        add_error ErrorDetails.new(key, :mongoDB_server_not_found, host)
         return
       end
 
       must_check_db = !(false == options[:check_database])
       if must_check_db && !@conn.database_names.include?(db)
-        FailFast.errors << ErrorDetails.new(key, :mongoDB_db_not_found, db)
+        add_error ErrorDetails.new(key, :mongoDB_db_not_found, db)
       end
     end
 
