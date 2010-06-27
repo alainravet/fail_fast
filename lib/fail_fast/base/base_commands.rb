@@ -6,7 +6,7 @@ class FailFast
     #     fail "I don't work on Sunday""
     #   end
     def fail(message)
-      FailFast.errors << ErrorDetails.new(nil, :fail, message)
+      add_error ErrorDetails.new(nil, :fail, message)
     end
 
     def only_if(condition, &block)
