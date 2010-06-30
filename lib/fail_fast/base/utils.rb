@@ -11,10 +11,10 @@ class FailFast
     # Usage
     #   value_for_deep_key('one/two/three')
     # returns
-    #   @config_as_hash['one']['two']['three']
+    #   @yaml_config_as_hash['one']['two']['three']
     #
     def value_for_deep_key(key)
-      key.to_s.split('/').inject(@config_as_hash) { |h, k| h[k] } rescue nil
+      key.to_s.split('/').inject(@yaml_config_as_hash) { |h, k| h[k] } rescue nil
     end
 
 
