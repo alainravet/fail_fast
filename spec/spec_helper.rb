@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'fail_fast'
 require 'spec'
 require 'spec/autorun'

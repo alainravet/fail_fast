@@ -1,4 +1,4 @@
-require 'active_record'
+require 'activerecord'
 
 class FailFast
   module CheckActiveRecordDB
