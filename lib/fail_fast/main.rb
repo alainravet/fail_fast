@@ -1,6 +1,6 @@
 require 'yaml'
 require 'erb'
-require File.expand_path(File.dirname(__FILE__) + '/base/error_db')
+require File.expand_path(File.dirname(__FILE__) + '/support/error_db')
 
 class FailFast
 
