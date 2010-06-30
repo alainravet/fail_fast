@@ -4,12 +4,16 @@ class FailFast
       @@hash = {}
     end
 
-    def errors_for(filter)
-      @@hash[filter] ||= []
+    def errors_for(key)
+      @@hash[key] ||= []
     end
 
-    def append(filter, value)
-      errors_for(filter)  << value
+    def append(key, value)
+      errors_for(key)  << value
+    end
+
+    def keys
+      @@hash.keys
     end
   end
 end
