@@ -10,9 +10,10 @@ UNKNOWN_FILE_PATH =   'an_unknown_file_path'
 EMPTY_FILE_PATH   =   File.expand_path(File.dirname(__FILE__) + '/fixtures/empty.yml')
 SIMPLE_FILE_PATH  =   File.expand_path(File.dirname(__FILE__) + '/fixtures/simple.yml')
 
+class ExitTriggered < StandardError ; end
 module Kernel
   def exit(param=nil)
-    raise "Kernel.exit was called"
+    raise ExitTriggered.new('Kernel.exit was called')
   end
 end
 

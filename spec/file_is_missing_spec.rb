@@ -12,7 +12,7 @@ describe "ConfigCheck on an unknown file" do
   it "should raise an error in fail_fast()" do
     lambda {
       FailFast(UNKNOWN_FILE_PATH).check do end
-    }.should raise_error
+    }.should raise_error(ExitTriggered)
     fail unless FailFast.global_errors.collect(&:kind) == [:config_file_not_found]
   end
 

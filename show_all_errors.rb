@@ -24,7 +24,13 @@ $LOAD_PATH.unshift(File.dirname(__FILE__)+'/lib')
 SPEC_DIR = File.dirname(__FILE__)+'/spec'
 
 require 'fail_fast'
-FailFast(SPEC_DIR + '/fixtures/simple.yml', 'a-prefix').check do
+
+
+FailFast('unknown-file').check_now.but_fail_later do
+end
+
+
+FailFast(SPEC_DIR + '/fixtures/simple.yml', 'a-prefix').check_now.but_fail_later do
 
 #test values :
   has_value_for   :first_keyNOT                   # single absent key
@@ -64,3 +70,5 @@ FailFast(SPEC_DIR + '/fixtures/simple.yml', 'a-prefix').check do
 #misc
   fail 'a custom failure message'
 end
+
+FailFast.fail_now

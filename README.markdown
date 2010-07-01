@@ -6,38 +6,85 @@
 
 ## How to use :
 
-Early in your project boot sequence insert code like
 
-    require 'fail_fast'
-    FailFast('database.yml').check do
-      has_active_record_db_for  Rails.env
-    end
+### Case 1 : don't start the application if the DB cannot be reached.
 
-    FailFast('database.mongo.yml').check do
-      has_mongoDB_for   Rails.env
-    end
+Early in your project boot sequence insert this code :
 
-    FailFast('path_to/config.yml', prefix=Rails.env).check do
-      has_values_for    'author/fname', 'author/lname'
-      has_email_for     'newsletter/to_address'
+	require 'fail_fast'
+	FailFast("path/to/database.yml").check do
+	  has_active_record_db_for  'production'
+	end
 
-      only_if Rails.env.production? do
-        has_url_for       'bug_tracker/url', :reachable => true
-      end
 
-      directory_exists_for  '/tmp'
-      file_exists_for       'public/nda.pdf'
+If the DB connection fails,   
+* the application will exit immediately and    
+* you'll see this report :
+  
 
-      skip_if Rails.env.development? do
-        fail "I don't work on Sunday" if 0 == Time.now.wday
-       end
-    end
+    +------------------------------------------------------------------------------------------
+    |   FAIL_FAST error : precondition(s) not met in
+    |  -----------------
+    |     file         :  "path/to/database.yml"
+    |     keys prefix  :  (none)
+    +------------------------------------------------------------------------------------------
+    |      error                                   key                                value
+    +------------------------------------------------------------------------------------------
+    |  * active_record_db_connection_error      production                          Unknown database 'a_db'
+    +------------------------------------------------------------------------------------------
+
+Remark :  `check` will call `exit(1)` at the end of the first block with an error.   
+If you want to collect and report all the errors before exiting, use `check_now.but_fail_later` (see case 2 below).
+
+### Case 2 : collect errors in multiple blocks.
+
+
+	require 'fail_fast'
+	FailFast('database.yml').check_now.but_fail_later do
+	  has_active_record_db_for  'production'
+	end
+
+	FailFast('database.mongo.yml').check_now.but_fail_later do
+	  has_mongoDB_for   Rails.env
+	end
+	
+	FailFast('path_to/config.yml', prefix=Rails.env).check_now.but_fail_later do
+	  has_values_for    'author/fname', 'author/lname'
+	  has_email_for     'newsletter/to_address'
+	
+	  only_if Rails.env.production? do
+	    has_url_for       'bug_tracker/url', :reachable => true
+	  end
+	
+	  directory_exists_for  '/tmp'
+	  file_exists_for       'public/nda.pdf'
+	
+	  skip_if Rails.env.development? do
+	    fail "I don't work on Sunday" if 0 == Time.now.wday
+	   end
+	end
+	
+	FailFast.fail_now   # exit it an error was detected in any of the 3 blocks above.
+
 
 If it fails, you'll get a report like this :
     
     +------------------------------------------------------------------------------------------
-    |   FAIL_FAST error : "./spec/fixtures/simple.yml"
-    |   key prefix  = nil
+    |   FAIL_FAST error : precondition(s) not met in
+    |  -----------------
+    |     file         :  "path/to/database.yml"
+    |     keys prefix  :  (none)
+    +------------------------------------------------------------------------------------------
+    |      error                                   key                                value
+    +------------------------------------------------------------------------------------------
+    |  * active_record_db_connection_error      production                          Unknown database 'a_db'
+    +------------------------------------------------------------------------------------------
+
+    +------------------------------------------------------------------------------------------
+    |   FAIL_FAST error : precondition(s) not met in
+    |  -----------------
+    |     file         :  "./spec/fixtures/simple.yml"
+    |     keys prefix  :  none
     +------------------------------------------------------------------------------------------
     |      error                                   key                                value
     +------------------------------------------------------------------------------------------
@@ -89,11 +136,12 @@ You can also add custom rules, not related to any config files :
 
 ### _free/direct_ commands (not linked to the yaml file contents) :
 
-      directory_exists      '/tmp'
-      file_exists           '/Users/me/.bash_profile'
-      has_mongoDB           'localhost', 'db_app_1'
-      has_active_record_db  :host => 'dbserv', :adapter => 'mysql', :database => 'db'
-      fail "I don't work on Sunday" if (0 == Time.now.wday)
+	fail "I don't work on Sunday" if (0 == Time.now.wday)
+
+	directory_exists      '/tmp'
+	file_exists           '/Users/me/.bash_profile'
+	has_mongoDB           'localhost', 'db_app_1'
+	has_active_record_db  :host => 'dbserv', :adapter => 'mysql', :database => 'db'
 
 ### _keyed_ commands (linked to a value found in a yaml file) :
 
@@ -101,37 +149,38 @@ You can also add custom rules, not related to any config files :
 
 *presence :*
 
-      has_value_for   :application_name
-      has_values_for  'author/fname', 'author/lname'
+	has_value_for   :application_name
+	has_values_for  'author/fname', 'author/lname'
 
 *contents <-> a regexp or pattern :*
 
-      has_value_for   'level',  /(alpha|beta|production)/   
-      has_url_for     'bug_tracker/url'   
-      has_email_for   'newsletter/to_address'   
+	has_value_for   'level',  /(alpha|beta|production)/   
+	has_url_for     'bug_tracker/url'   
+	has_email_for   'newsletter/to_address'   
 
 Test the file system :
 
-      directory_exists_for  'assets-upload_dir'
-      file_exists_for       'assets-nda_pdf_file'
+	directory_exists_for  'assets-upload_dir'
+	file_exists_for       'assets-nda_pdf_file'
 
 Test external services :
 
-      # is a webserver up ?
-      has_url_for     'bug_tracker/url', :reachable => true
-      has_url_for     'bug_tracker/url', :reachable => true, :may_add_trailing_slash => true
+	# is a webserver up ?
+	has_url_for     'bug_tracker/url', :reachable => true
+	has_url_for     'bug_tracker/url', :reachable => true, :may_add_trailing_slash => true
 
-
-      # can we connect to a mongoDB db/server :
-      has_mongoDB_for   'test/mongoDB'
-      has_mongoDB_for   'test/unknown_mongoDB_db', :check_database => false
-
-      # can we connect to a SQL db :
-      has_active_record_db_for 'production/db_connection'
-
+	# can we connect to a mongoDB db/server :
+	has_mongoDB_for   'test/mongoDB'
+	has_mongoDB_for   'test/unknown_mongoDB_db', :check_database => false
+	
+	# can we connect to a SQL db :
+	has_active_record_db_for 'production/db_connection'
+	
 Misc :
-      fail 'message'
+
+	fail "I don't work on Sunday" if 0 == Time.now.wday
 
 Control commands :
-      skip_if <condition> do .. end
-      only_if <condition> do .. end
+
+	skip_if <condition> do .. end
+	only_if <condition> do .. end

@@ -15,5 +15,9 @@ class FailFast
     def keys
       @@hash.keys
     end
+
+    def self.key_for(config_file_path, keys_prefix=nil)
+      ["<#{config_file_path}>", keys_prefix].compact.join
+    end
   end
 end

@@ -9,7 +9,11 @@ class FailFast
   def initialize(config_file_path, keys_prefix=nil)
     @config_file_path = config_file_path
     @keys_prefix      = keys_prefix
-    @errors_key       = ["<#{config_file_path}>", keys_prefix].compact.join
+    @errors_key       = ErrorDb.key_for(config_file_path, keys_prefix)
+  end
+
+  def self.fail_now
+    exit(1) unless errors_db.keys.empty?
   end
 
   def self.errors_db
