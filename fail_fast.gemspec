@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{fail_fast}
-  s.version = "0.1.2"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alain Ravet"]
-  s.date = %q{2010-06-21}
+  s.date = %q{2010-07-04}
   s.description = %q{raises an error if the yaml contents of a config file does not pass a test script.}
   s.email = %q{alainravet@gmail.com}
   s.extra_rdoc_files = [
@@ -26,28 +26,37 @@ Gem::Specification.new do |s|
      "VERSION",
      "fail_fast.gemspec",
      "lib/fail_fast.rb",
-     "lib/fail_fast/check_active_record_db.rb",
-     "lib/fail_fast/check_email.rb",
-     "lib/fail_fast/check_file_system.rb",
-     "lib/fail_fast/check_mongo_db.rb",
-     "lib/fail_fast/check_url.rb",
-     "lib/fail_fast/check_value.rb",
+     "lib/fail_fast/base/base.rb",
+     "lib/fail_fast/base/utils.rb",
+     "lib/fail_fast/base/z_only_for_tests.rb",
+     "lib/fail_fast/extensions/base_commands.rb",
+     "lib/fail_fast/extensions/check_active_record_db.rb",
+     "lib/fail_fast/extensions/check_email.rb",
+     "lib/fail_fast/extensions/check_file_system.rb",
+     "lib/fail_fast/extensions/check_mongo_db.rb",
+     "lib/fail_fast/extensions/check_url.rb",
+     "lib/fail_fast/extensions/check_value.rb",
      "lib/fail_fast/main.rb",
-     "lib/fail_fast/misc.rb",
      "lib/fail_fast/report.txt.erb",
+     "lib/fail_fast/support/error_db.rb",
+     "lib/fail_fast/support/error_details.rb",
+     "lib/fail_fast/support/z_only_for_tests.rb",
      "show_all_errors.rb",
+     "spec/base_commands_spec.rb",
+     "spec/check_active_record_db_spec.rb",
+     "spec/check_email_spec.rb",
+     "spec/check_file_system_spec.rb",
+     "spec/check_mongo_db_spec.rb",
+     "spec/check_url_spec.rb",
+     "spec/check_value_spec.rb",
+     "spec/errors_storage_spec.rb",
      "spec/file_is_empty_spec.rb",
      "spec/file_is_missing_spec.rb",
-     "spec/file_system_spec.rb",
      "spec/fixtures/empty.yml",
      "spec/fixtures/simple.yml",
-     "spec/has_active_record_db_spec.rb",
-     "spec/has_email_for_spec.rb",
-     "spec/has_mongoDB_for_spec.rb",
-     "spec/has_url_for_spec.rb",
-     "spec/has_value_for_spec.rb",
      "spec/how_to_use_spec.rb",
-     "spec/misc_spec.rb",
+     "spec/multiple_blocks_support_spec.rb",
+     "spec/report_printing_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
@@ -57,16 +66,19 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{raises an error if the yaml contents of a config file does pass a test script.}
   s.test_files = [
-    "spec/file_is_empty_spec.rb",
+    "spec/base_commands_spec.rb",
+     "spec/check_active_record_db_spec.rb",
+     "spec/check_email_spec.rb",
+     "spec/check_file_system_spec.rb",
+     "spec/check_mongo_db_spec.rb",
+     "spec/check_url_spec.rb",
+     "spec/check_value_spec.rb",
+     "spec/errors_storage_spec.rb",
+     "spec/file_is_empty_spec.rb",
      "spec/file_is_missing_spec.rb",
-     "spec/file_system_spec.rb",
-     "spec/has_active_record_db_spec.rb",
-     "spec/has_email_for_spec.rb",
-     "spec/has_mongoDB_for_spec.rb",
-     "spec/has_url_for_spec.rb",
-     "spec/has_value_for_spec.rb",
      "spec/how_to_use_spec.rb",
-     "spec/misc_spec.rb",
+     "spec/multiple_blocks_support_spec.rb",
+     "spec/report_printing_spec.rb",
      "spec/spec_helper.rb"
   ]
 
