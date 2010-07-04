@@ -71,4 +71,7 @@ FailFast(SPEC_DIR + '/fixtures/simple.yml', 'a-prefix').check_now.but_fail_later
   fail 'a custom failure message'
 end
 
-FailFast.fail_now
+if FailFast.failed?
+  puts "cannot start the application due to the problems mentioned above"
+  FailFast.fail_now
+end

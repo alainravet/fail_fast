@@ -1,3 +1,6 @@
+0.2.0
+  - added `FailFast(<afile>).check_now.but_fail_later` + FailFast.fail_now
+  - added `FailFast.failed?'
 0.1.2
   - added commands : only_if and skip_if
 0.1.1

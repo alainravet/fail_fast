@@ -114,7 +114,8 @@ If it fails, you'll get a report like this :
 	...	# code like in the cases above.
 
 	if FailFast.failed?
-		puts "you can skip the FailFast precondtions test with the SKIP_FAIL_FAST environment variable"
+        puts "Cannot start the application due to the problems mentioned above."
+		puts "You can skip those test with the SKIP_FAIL_FAST environment variable"
 		FailFast.fail_now	unless 'true'==ENV['SKIP_FAIL_FAST']
 	end
 
