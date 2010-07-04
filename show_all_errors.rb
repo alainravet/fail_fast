@@ -30,7 +30,7 @@ FailFast('unknown-file').check_now.but_fail_later do
 end
 
 
-FailFast(SPEC_DIR + '/fixtures/simple.yml', 'a-prefix').check_now.but_fail_later do
+FailFast(SPEC_DIR + '/fixtures/simple.yml').check_now.but_fail_later do
 
 #test values :
   has_value_for   :first_keyNOT                   # single absent key
