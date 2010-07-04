@@ -109,6 +109,16 @@ If it fails, you'll get a report like this :
     |  * fail                                                                       a custom failure message
     +------------------------------------------------------------------------------------------
 
+### Case 3 : print an additional custom message if errors were detected
+
+	...	# code like in the cases above.
+
+	if FailFast.failed?
+		puts "you can skip the FailFast precondtions test with the SKIP_FAIL_FAST environment variable"
+		FailFast.fail_now	unless 'true'==ENV['SKIP_FAIL_FAST']
+	end
+
+
 
 ## Info :
 

@@ -42,7 +42,7 @@ module DSLMacros
         rescue => e
           raise e
         ensure
-          if 1 <= FailFast.global_errors.length
+          if FailFast.failed?
             fail "ZZshould not have raised an error, but it raised\n#{FailFast.global_errors.join("\n")}"
           end
         end
@@ -62,7 +62,7 @@ module DSLMacros
           # uncomment the next line after the refactoring/once error are no longer raise
           #  raise e
         ensure
-          if FailFast.global_errors.empty?
+          if !FailFast.failed?
             fail "\ne2d\nshould have raised a #{kind} error for #{key} \n==#{e}"
           elsif FailFast.global_errors.length == 1 && !FailFast.global_errors.first.has_key_and_kind?(key, kind)
             fail "\ne2e\nshould have raised a #{kind.inspect} error for #{key.inspect}, but raised instead #{FailFast.global_errors.inspect}"
@@ -85,7 +85,7 @@ module DSLMacros
           # uncomment the next line after the refactoring/once error are no longer raise
           #  raise e
         ensure
-          if FailFast.global_errors.empty?
+          if !FailFast.failed?
             fail "\ne2d\nshould have raised a #{kind} error for #{value} \n==#{e}"
           elsif FailFast.global_errors.length == 1 && !FailFast.global_errors.first.has_value_and_kind?(value, kind)
             fail "\ne2e\nshould have raised a #{kind.inspect} error for #{value.inspect}\n, but raised instead\n#{FailFast.global_errors.inspect}"

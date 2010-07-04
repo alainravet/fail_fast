@@ -9,7 +9,7 @@ describe "ConfigCheck on an empty file" do
     lambda {
       FailFast(EMPTY_FILE_PATH).check do end
     }.should_not raise_error
-    FailFast.global_errors.should be_empty
+    FailFast.failed?.should be_false
   end
 
   it "should raise an error when there is a failing check" do
@@ -18,7 +18,7 @@ describe "ConfigCheck on an empty file" do
         has_value_for :anykey
       end
     }.should raise_error(ExitTriggered)
-    FailFast.global_errors.should_not be_empty
+    FailFast.failed?.should be_true
   end
 
   it "should raise a delayed error when there is a failing check" do

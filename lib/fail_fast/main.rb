@@ -16,6 +16,10 @@ class FailFast
     exit(1) unless errors_db.keys.empty?
   end
 
+  def self.failed?
+    !global_errors.empty?
+  end
+
   def self.errors_db
     @@_errors_db
   end

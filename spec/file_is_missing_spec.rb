@@ -6,7 +6,7 @@ describe "ConfigCheck on an unknown file" do
 
   it "should not raise an error in new()" do
     FailFast(UNKNOWN_FILE_PATH)
-    fail unless FailFast.global_errors.empty?
+    fail if FailFast.failed?
   end
 
   it "should raise an error in fail_fast()" do
