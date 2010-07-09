@@ -9,13 +9,13 @@ describe "the printed error report" do
       FailFast(SIMPLE_FILE_PATH).check { has_value_for :anykey }
     rescue
     end
-    $stdout.string.should match(/error.*#{SIMPLE_FILE_PATH}.*missing_value/mi)
+    $stdout.string.should match(/error.*#{SIMPLE_FILE_PATH}.*missing value/mi)
   end
 
 
   it "contains an error details, even when we delay the failing" do
     FailFast(SIMPLE_FILE_PATH).check_now.but_fail_later { has_value_for :unknown_key }
-    $stdout.string.should match(/error.*#{SIMPLE_FILE_PATH}.*missing_value/mi)
+    $stdout.string.should match(/error.*#{SIMPLE_FILE_PATH}.*missing value/mi)
     $stdout.string.should match(/error.*#{SIMPLE_FILE_PATH}.*unknown_key/mi)
   end
 
