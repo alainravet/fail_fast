@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 a_dir   = SPEC_DIR + '/fixtures'
 a_file  = SPEC_DIR + '/fixtures/simple.yml'
