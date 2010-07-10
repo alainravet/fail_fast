@@ -119,6 +119,12 @@ If it fails, you'll get a report like this :
 		FailFast.fail_now	unless 'true'==ENV['SKIP_FAIL_FAST']
 	end
 
+### Case 4 : handmade (make your own fail_fast test)
+
+	FailFast("path/to/config.yml").check do
+      fail 'jruby is not on the path' unless `which jruby` =~ /jruby$/
+	end
+
 
 
 ## Info :

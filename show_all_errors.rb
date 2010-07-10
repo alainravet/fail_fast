@@ -69,6 +69,9 @@ FailFast(SPEC_DIR + '/fixtures/simple.yml').check_now.but_fail_later do
 
 #misc
   fail 'a custom failure message'
+
+#handmade :
+  fail 'zruby is not on the path' unless `which zruby` =~ /zruby$/
 end
 
 if FailFast.failed?
