@@ -30,3 +30,4 @@ db_connection:
 
 number_six: 6
 letter_x: x
+nda_file: <%= SPEC_DIR + '/fixtures/simple.yml' %>

@@ -44,6 +44,9 @@ FailFast(SPEC_DIR + '/fixtures/simple.yml').check_now.but_fail_later do
   fake_http_server
   has_url_for 'test/host'                         # value is not a url
 
+  nda_file = value_of(:nda_file)
+  fail 'NDA is too old' if (Time.now - File.mtime(nda_file))  > (24 * 60 * 60) * 365
+
 #test http server :
   has_url_for 'test/url_not_reachable', :reachable => true #server is not reachable
 
@@ -72,6 +75,10 @@ FailFast(SPEC_DIR + '/fixtures/simple.yml').check_now.but_fail_later do
 
 #handmade :
   fail 'zruby is not on the path' unless `which zruby` =~ /zruby$/
+
+  nda_file = value_of(:nda_file)
+  fail 'NDA is too old' if (Time.now - File.mtime(nda_file))  > (24 * 60 * 60) * 365
+
 end
 
 if FailFast.failed?

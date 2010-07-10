@@ -2,6 +2,14 @@ class FailFast
   module CheckValue
 
     # Usage
+    #  nda_file = value_of(:nda_file)
+    #
+    def value_of(key)
+      key_value_regexp_options(key, []).value
+    end
+
+
+    # Usage
     #  has_values_for :sym_key, 'str_key'
     #
     def has_values_for(*keys)

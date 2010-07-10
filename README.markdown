@@ -175,6 +175,11 @@ You can also add custom rules, not related to any config files :
 	has_url_for     'bug_tracker/url'   
 	has_email_for   'newsletter/to_address'   
 
+* customize it
+
+    nda_file = value_of(:nda_file)
+    fail 'NDA is too old' if (Time.now - File.mtime(nda_file))  > (24 * 60 * 60) * 365
+
 Test the file system :
 
 	directory_exists_for  'assets-upload_dir'

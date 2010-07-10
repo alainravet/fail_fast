@@ -1,5 +1,32 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
+describe 'value_of()' do
+  it 'should return nil when the value is blank' do
+    FailFast(SIMPLE_FILE_PATH).check { @@val = value_of(:key_with_blank_value) }
+    @@val.should be_nil
+  end
+
+  it 'should return nil when the key is unknown' do
+    FailFast(EMPTY_FILE_PATH).check { @@val = value_of(:anykey) }
+    @@val.should be_nil
+  end
+  it 'should return the value when it is a leaf'do
+    FailFast(SIMPLE_FILE_PATH).check { @@val = value_of(:first_key) }
+    @@val.should == 'premier'
+  end
+
+  it 'should return the values in a hash when the value is a tree' do
+    FailFast(SIMPLE_FILE_PATH).check { @@val = value_of(:test) }
+    @@val.should be_a(Hash)
+    @@val['mongoDB']['host'].should == 'localhost'
+  end
+
+  it 'should preprend the prefix to the key' do
+    FailFast(SIMPLE_FILE_PATH, 'test').check { @@val = value_of(:mongoDB) }
+    @@val['host'].should == 'localhost'
+  end
+end
+
 describe 'has_value_for()' do
 
   context 'when the value is present' do
