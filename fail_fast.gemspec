@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{fail_fast}
-  s.version = "0.2.1"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alain Ravet"]
-  s.date = %q{2010-07-05}
+  s.date = %q{2010-07-17}
   s.description = %q{raises an error if the yaml contents of a config file does not pass a test script.}
   s.email = %q{alainravet@gmail.com}
   s.extra_rdoc_files = [
@@ -42,21 +42,22 @@ Gem::Specification.new do |s|
      "lib/fail_fast/support/error_details.rb",
      "lib/fail_fast/support/z_only_for_tests.rb",
      "show_all_errors.rb",
-     "spec/base_commands_spec.rb",
-     "spec/check_active_record_db_spec.rb",
-     "spec/check_email_spec.rb",
-     "spec/check_file_system_spec.rb",
-     "spec/check_mongo_db_spec.rb",
-     "spec/check_url_spec.rb",
-     "spec/check_value_spec.rb",
-     "spec/errors_storage_spec.rb",
-     "spec/file_is_empty_spec.rb",
-     "spec/file_is_missing_spec.rb",
+     "spec/base/base_commands_spec.rb",
+     "spec/base/errors_storage_spec.rb",
+     "spec/base/file_is_empty_spec.rb",
+     "spec/base/file_is_missing_spec.rb",
+     "spec/base/multiple_blocks_support_spec.rb",
+     "spec/base/not_linked_to_a_file_spec.rb",
+     "spec/base/report_printing_spec.rb",
+     "spec/extensions/check_active_record_db_spec.rb",
+     "spec/extensions/check_email_spec.rb",
+     "spec/extensions/check_file_system_spec.rb",
+     "spec/extensions/check_mongo_db_spec.rb",
+     "spec/extensions/check_url_spec.rb",
+     "spec/extensions/check_value_spec.rb",
      "spec/fixtures/empty.yml",
      "spec/fixtures/simple.yml",
      "spec/how_to_use_spec.rb",
-     "spec/multiple_blocks_support_spec.rb",
-     "spec/report_printing_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
@@ -66,19 +67,20 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{raises an error if the yaml contents of a config file does pass a test script.}
   s.test_files = [
-    "spec/base_commands_spec.rb",
-     "spec/check_active_record_db_spec.rb",
-     "spec/check_email_spec.rb",
-     "spec/check_file_system_spec.rb",
-     "spec/check_mongo_db_spec.rb",
-     "spec/check_url_spec.rb",
-     "spec/check_value_spec.rb",
-     "spec/errors_storage_spec.rb",
-     "spec/file_is_empty_spec.rb",
-     "spec/file_is_missing_spec.rb",
+    "spec/base/base_commands_spec.rb",
+     "spec/base/errors_storage_spec.rb",
+     "spec/base/file_is_empty_spec.rb",
+     "spec/base/file_is_missing_spec.rb",
+     "spec/base/multiple_blocks_support_spec.rb",
+     "spec/base/not_linked_to_a_file_spec.rb",
+     "spec/base/report_printing_spec.rb",
+     "spec/extensions/check_active_record_db_spec.rb",
+     "spec/extensions/check_email_spec.rb",
+     "spec/extensions/check_file_system_spec.rb",
+     "spec/extensions/check_mongo_db_spec.rb",
+     "spec/extensions/check_url_spec.rb",
+     "spec/extensions/check_value_spec.rb",
      "spec/how_to_use_spec.rb",
-     "spec/multiple_blocks_support_spec.rb",
-     "spec/report_printing_spec.rb",
      "spec/spec_helper.rb"
   ]
 

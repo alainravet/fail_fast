@@ -1,3 +1,6 @@
+0.3.0
+  - added value_of()
+  - added checks not linked to a config file  (FailFast().check do .. end)  
 0.2.1
   - improve + colour the report template
 0.2.0
