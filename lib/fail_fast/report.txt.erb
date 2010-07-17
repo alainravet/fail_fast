@@ -1,10 +1,15 @@
+<% if @config_file_path %>
 +------------------------------------------------------------------------------------------
 |   FAIL_FAST error : precondition(s) not met in
 |  -----------------
 |     file         :  "<%= @config_file_path %>"
-|     keys prefix  :  <%= @keys_prefix ?  @keys_prefix.inspect : 'none' %>
+<% if @keys_prefix%>|     keys prefix  :  <%= @keys_prefix ?  @keys_prefix.inspect : 'none' %>
+<% end %>+------------------------------------------------------------------------------------------
+<% else %>
 +------------------------------------------------------------------------------------------
-<% @errors.each do |e|
+|   FAIL_FAST error : precondition(s) not met.
++------------------------------------------------------------------------------------------
+<% end %><% @errors.each do |e|
     @msg = case e.kind
         when :config_file_not_found
           red("The config file could not be found") + " : '#{yellow(lred(e.value))}'."

@@ -7,7 +7,30 @@
 ## How to use :
 
 
-### Case 1 : don't start the application if the DB cannot be reached.
+### Example 0 : don't start the application if '_why' cannot be found (on the PATH).
+
+Insert this code early in your program starting sequence :
+
+	require 'fail_fast'
+	FailFast().check do
+      fail '_why could not be found on the path' unless `which _why` =~ /_why$/
+	end
+
+
+If _\_why_ can't be found :  
+* the application will exit immediately and    
+* you will see this report :
+
+
+    +------------------------------------------------------------------------------------------
+    |   FAIL_FAST error : precondition(s) not met.
+    +------------------------------------------------------------------------------------------
+    |  _why could not be found on the path
+    +------------------------------------------------------------------------------------------
+
+
+
+### Example 1 : don't start the application if the DB cannot be reached.
 
 Early in your project boot sequence insert this code :
 
@@ -19,14 +42,13 @@ Early in your project boot sequence insert this code :
 
 If the DB connection fails,   
 * the application will exit immediately and    
-* you'll see this report :
+* you will see this report :
   
 
     +------------------------------------------------------------------------------------------
     |   FAIL_FAST error : precondition(s) not met in
     |  -----------------
     |     file         :  "path/to/database.yml"
-    |     keys prefix  :  (none)
     +------------------------------------------------------------------------------------------
     |      error                                   key                                value
     +------------------------------------------------------------------------------------------
@@ -34,9 +56,9 @@ If the DB connection fails,
     +------------------------------------------------------------------------------------------
 
 Remark :  `check` will call `exit(1)` at the end of the first block with an error.   
-If you want to collect and report all the errors before exiting, use `check_now.but_fail_later` (see case 2 below).
+If you want to collect and report all the errors before exiting, use `check_now.but_fail_later` (see Example 2 below).
 
-### Case 2 : collect errors in multiple blocks.
+### Example 2 : collect errors in multiple blocks.
 
 
 	require 'fail_fast'
@@ -109,7 +131,7 @@ If it fails, you'll get a report like this :
     |  * fail                                                                       a custom failure message
     +------------------------------------------------------------------------------------------
 
-### Case 3 : print an additional custom message if errors were detected
+### Example 3 : print an additional custom message if errors were detected
 
 	...	# code like in the cases above.
 
@@ -119,18 +141,11 @@ If it fails, you'll get a report like this :
 		FailFast.fail_now	unless 'true'==ENV['SKIP_FAIL_FAST']
 	end
 
-### Case 4 : handmade (make your own fail_fast test)
-
-	FailFast("path/to/config.yml").check do
-      fail 'jruby is not on the path' unless `which jruby` =~ /jruby$/
-	end
-
 
 
 ## Info :
 
-Failing fast is important.   
-This gem DSL lets you write tests scripts that run early in the boot sequence of an application.    
+This gem DSL lets you write preconditions-scripts that you run early in the boot sequence of an application.
 An exception is raised if one or more tests fail, and you get a detailled report of all the problems encountered.
 
 Some rules are based on the contents of configuration files (database.yml, config.yml, etc...) :   

@@ -29,6 +29,9 @@ require 'fail_fast'
 FailFast('unknown-file').check_now.but_fail_later do
 end
 
+FailFast().check_now.but_fail_later do
+  fail '_why could not be found on the path' unless `which _why` =~ /_why$/
+end
 
 FailFast(SPEC_DIR + '/fixtures/simple.yml').check_now.but_fail_later do
 

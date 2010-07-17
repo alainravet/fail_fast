@@ -5,7 +5,7 @@ class FailFast
     def check(&block)
       fail_now_mode   = block_given? # false in the case of  *.check_now.but_fail_now do .. end
 
-      @config_file_not_found = !File.exist?(@config_file_path)
+      @config_file_not_found = @config_file_path && !File.exist?(@config_file_path)
       if @config_file_not_found
         add_error ErrorDetails.new(nil, :config_file_not_found, @config_file_path)
       else
@@ -30,7 +30,7 @@ class FailFast
   private
 
     def check_all_rules(&block)
-      @yaml_config_as_hash = YAML.load(ERB.new(File.read(@config_file_path)).result) || {}
+      @yaml_config_as_hash = (@config_file_path && YAML.load(ERB.new(File.read(@config_file_path)).result)) || {}
       self.instance_eval(&block)
     end
 
