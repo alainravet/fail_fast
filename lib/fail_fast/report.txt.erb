@@ -1,52 +1,13 @@
 <% if @config_file_path %>
 +------------------------------------------------------------------------------------------
-|   FAIL_FAST error : precondition(s) not met in
+|   <%= lred 'FAIL_FAST error' %> : precondition(s) not met in
 |  -----------------
-|     file         :  "<%= @config_file_path %>"
-<% if @keys_prefix%>|     keys prefix  :  <%= @keys_prefix ?  @keys_prefix.inspect : 'none' %>
+|     file          :  "<%= @config_file_path %>"
+<% if @keys_prefix%>|     keys prefix  :  <%= @keys_prefix.inspect %>
 <% end %>+------------------------------------------------------------------------------------------
 <% else %>
 +------------------------------------------------------------------------------------------
-|   FAIL_FAST error : precondition(s) not met.
+|   <%= lred 'FAIL_FAST error' %> : precondition(s) not met.
 +------------------------------------------------------------------------------------------
-<% end %><% @errors.each do |e|
-    @msg = case e.kind
-        when :config_file_not_found
-          red("The config file could not be found") + " : '#{yellow(lred(e.value))}'."
-        when :missing_value
-          red("Missing value") +" for the key '#{yellow(e.key)}'."
-        when :value_does_not_match
-          red("Invalid value") +" '#{lred(e.value)}' for the key '#{yellow(e.key)}'."
-        when :not_an_email
-          red("Invalid email address") + " '#{lred(e.value)}' for the key '#{yellow(e.key)}'."
-        when :not_a_url
-          red("Invalid url") + " '#{lred(e.value)}' for the key '#{yellow(e.key)}'."
-        when :url_not_reachable
-          red("Could not reach the url") + " '#{lred(e.value)}' for the key '#{yellow(e.key)}'."
-        when :directory_not_found
-          e.key ?
-          red("Missing directory") + " '#{lred(e.value)}' for the key '#{yellow(e.key)}'." :
-          red("Missing directory") + " '#{lred(e.value)}'."
-        when :file_not_found
-          e.key ?
-          red("Missing file") + " '#{lred(e.value)}' for the key '#{yellow(e.key)}'." :
-          red("Missing file") + " '#{lred(e.value)}'."
-        when :mongoDB_server_not_found
-          e.key ?
-          red("Could not connect to the mongoDb server") + " '#{lred(e.value)} for the key '#{yellow(e.key)}'." :
-          red("Could not connect to the mongoDb server") + " '#{lred(e.value)}."
-        when :mongoDB_db_not_found
-          e.key ?
-          red("Could not open the mongoDb db") + " '#{lred(e.value)} for the key '#{yellow(e.key)}'." :
-          red("Could not open the mongoDb db") + " '#{lred(e.value)}."
-        when :active_record_db_connection_error
-          e.key ?
-          red("Could not connect to the DB server") + " '#{lred(e.value)} for the key '#{yellow(e.key)}'." :
-          red("Could not connect to the DB server") + " '#{lred(e.value)}."
-        when :fail
-          red(lred(e.value))
-        else                      "%-38s %-35s %-30s \n" % [ e.kind, e.key, lred(e.value)] 
-      end
-    
-%>|  <%= @msg + "\n"%><% end 
-%>+------------------------------------------------------------------------------------------
+<% end %>| <%= @errors.collect{|e| default_message_for(e)}.join("\n| ") %>
++------------------------------------------------------------------------------------------
