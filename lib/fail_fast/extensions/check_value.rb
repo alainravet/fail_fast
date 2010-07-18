@@ -28,7 +28,7 @@ class FailFast
 
       nof_errors = errors.size
       if blank?(p.value)
-        add_error ErrorDetails.new(key, :missing_value, nil)
+        add_error ErrorDetails.new(key, :missing_value)
 
       elsif p.regexp
         add_error ErrorDetails.new(key, :value_does_not_match, p.value) unless p.value =~ p.regexp
