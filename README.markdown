@@ -7,13 +7,14 @@
 ## How to use :
 
 
-### Example 0 : don't start the application if '_why' cannot be found (on the PATH).
+### Example 0 : don't start the application on Sunday or if '_why' cannot be found (on the PATH).
 
 Insert this code early in your program starting sequence :
 
 	require 'fail_fast'
 	FailFast().check do
-      fail '_why could not be found on the path' unless `which _why` =~ /_why$/
+	  is_on_path '_why'
+      fail "I don't work on Sunday" if 0 == Time.now.wday
 	end
 
 
@@ -195,10 +196,18 @@ You can also add custom rules, not related to any config files :
     nda_file = value_of(:nda_file)
     fail 'NDA is too old' if (Time.now - File.mtime(nda_file))  > (24 * 60 * 60) * 365
 
-Test the file system :
+Test the file system and .. :
 
+	directory_exists    '/home/ci/uploads'
+	file_exists         '/home/ci/config/secret.key'
+
+    # the keyed version :
 	directory_exists_for  'assets-upload_dir'
 	file_exists_for       'assets-nda_pdf_file'
+
+	is_on_path      'jruby'         # fail if jruby cannot be found 
+	is_on_path_for  :ruby_engine
+
 
 Test external services :
 

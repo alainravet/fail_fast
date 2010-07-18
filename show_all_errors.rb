@@ -60,6 +60,9 @@ FailFast(SPEC_DIR + '/fixtures/simple.yml').check_now.but_fail_later do
   file_exists         '/tmp/foo/bar/??nOTaFile'   # not a file
   file_exists_for     'test/a_directory'          # not a file
 
+  is_on_path '_why'
+  is_on_path_for 'app_not_on_path'
+
 #test mondoDB
   fake_mongo_server_absent
   has_mongoDB      '10.0.0.123', :timeout => 1    # no mongo server at this address

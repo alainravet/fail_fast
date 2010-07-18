@@ -28,6 +28,8 @@ class FailFast
           mcol("Missing directory") + " #{details}."
         when :file_not_found
           mcol("Missing file") + " #{details}."
+        when :not_on_path
+          mcol("App not on path : ") + " #{details}."
         when :mongoDB_server_not_found
           mcol("Could not connect to the mongoDb server") + " #{details}."
         when :mongoDB_db_not_found

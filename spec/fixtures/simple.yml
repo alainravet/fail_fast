@@ -1,6 +1,8 @@
 first_key: premier
 key_with_blank_value: <%= '' %>
 last_key: dernier
+app_on_path: ls
+app_not_on_path: ls0123
 test:
   host: localhost
   url: http://example.com/index.html
