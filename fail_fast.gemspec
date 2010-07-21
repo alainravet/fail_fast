@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{fail_fast}
-  s.version = "0.3.0"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alain Ravet"]
-  s.date = %q{2010-07-17}
+  s.date = %q{2010-07-22}
   s.description = %q{raises an error if the yaml contents of a config file does not pass a test script.}
   s.email = %q{alainravet@gmail.com}
   s.extra_rdoc_files = [
@@ -27,12 +27,14 @@ Gem::Specification.new do |s|
      "fail_fast.gemspec",
      "lib/fail_fast.rb",
      "lib/fail_fast/base/base.rb",
+     "lib/fail_fast/base/messaging.rb",
      "lib/fail_fast/base/utils.rb",
      "lib/fail_fast/base/z_only_for_tests.rb",
      "lib/fail_fast/extensions/base_commands.rb",
      "lib/fail_fast/extensions/check_active_record_db.rb",
      "lib/fail_fast/extensions/check_email.rb",
      "lib/fail_fast/extensions/check_file_system.rb",
+     "lib/fail_fast/extensions/check_is_on_path.rb",
      "lib/fail_fast/extensions/check_mongo_db.rb",
      "lib/fail_fast/extensions/check_url.rb",
      "lib/fail_fast/extensions/check_value.rb",
@@ -52,6 +54,7 @@ Gem::Specification.new do |s|
      "spec/extensions/check_active_record_db_spec.rb",
      "spec/extensions/check_email_spec.rb",
      "spec/extensions/check_file_system_spec.rb",
+     "spec/extensions/check_is_on_path_spec.rb",
      "spec/extensions/check_mongo_db_spec.rb",
      "spec/extensions/check_url_spec.rb",
      "spec/extensions/check_value_spec.rb",
@@ -77,6 +80,7 @@ Gem::Specification.new do |s|
      "spec/extensions/check_active_record_db_spec.rb",
      "spec/extensions/check_email_spec.rb",
      "spec/extensions/check_file_system_spec.rb",
+     "spec/extensions/check_is_on_path_spec.rb",
      "spec/extensions/check_mongo_db_spec.rb",
      "spec/extensions/check_url_spec.rb",
      "spec/extensions/check_value_spec.rb",

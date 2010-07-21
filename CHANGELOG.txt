@@ -1,3 +1,5 @@
+0.4
+  - added `is_on_path`
 0.3.0
   - added value_of()
   - added checks not linked to a config file  (FailFast().check do .. end)  
