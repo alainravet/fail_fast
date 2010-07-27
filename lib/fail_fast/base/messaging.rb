@@ -10,7 +10,7 @@ class FailFast
                 else  " #{qc_value} for the key #{qc_key}"
                 end
 
-      case e.kind
+      s = case e.kind
         when :config_file_not_found             then mcol("The config file could not be found") + " : #{yellow(e.value)}."
         when :missing_value                     then mcol("Missing value") +" #{details}."
         when :value_does_not_match              then mcol("Invalid value") +" #{details}."
@@ -27,6 +27,7 @@ class FailFast
         else
           "%-38s %-35s %-30s \n" % [ e.kind, e.key, qc_value]
       end
+      e.message ? "#{e.message}\n| #{s}": s
     end
 
     def mcol(msg)   lred(msg) end

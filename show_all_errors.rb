@@ -36,7 +36,7 @@ end
 FailFast(SPEC_DIR + '/fixtures/simple.yml').check_now.but_fail_later do
 
 #test values :
-  has_value_for   :first_keyNOT                   # single absent key
+  has_value_for   :first_keyNOT , :message => 'this is a custom message' # single absent key
   has_values_for  :last_keyNOT, 'number_sixNOT'   # multiple absent keys
   has_value_for 'testNOT/mongoDB/database'        # invalid yaml path
 

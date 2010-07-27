@@ -19,5 +19,9 @@ class FailFast
     def self.key_for(config_file_path, keys_prefix=nil)
       ["<#{config_file_path}>", keys_prefix].compact.join
     end
+
+    def messages
+      @@hash.first[1]
+    end
   end
 end

@@ -27,17 +27,18 @@ class FailFast
       key, options = p.key, p.options
 
       nof_errors = errors.size
+      message = options[:message]
       if blank?(p.value)
-        add_error ErrorDetails.new(key, :missing_value)
+        add_error ErrorDetails.new(key, :missing_value, nil, message)
 
       elsif p.regexp
-        add_error ErrorDetails.new(key, :value_does_not_match, p.value) unless p.value =~ p.regexp
+        add_error ErrorDetails.new(key, :value_does_not_match, p.value, message) unless p.value =~ p.regexp
 
       elsif options.is_a?(Hash) && options[:in].is_a?(Range)
-        add_error ErrorDetails.new(key, :value_not_in_range,   p.value) unless options[:in].include?(p.value)
+        add_error ErrorDetails.new(key, :value_not_in_range,   p.value, message) unless options[:in].include?(p.value)
 
       elsif options.is_a?(Hash) && options[:in].is_a?(Array)
-        add_error ErrorDetails.new(key, :value_not_in_array,   p.value) unless options[:in].include?(p.value)
+        add_error ErrorDetails.new(key, :value_not_in_array,   p.value, message) unless options[:in].include?(p.value)
       end
       no_new_error = nof_errors == errors.size
     end

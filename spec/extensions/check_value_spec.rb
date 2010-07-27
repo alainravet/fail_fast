@@ -28,7 +28,23 @@ describe 'value_of()' do
 end
 
 describe 'has_value_for()' do
+  before { capture_stdout }
+  after  { restore_stdout }
 
+  it "should accept a custom message for the 4 cases" do
+    FailFast(SIMPLE_FILE_PATH).check_now.but_fail_later do
+      has_value_for 'inconnu',   /localhost/,       :message => 'a_custom_message'
+      has_value_for :first_key,  /nomatchhere/,     :message => 'a_custom_message_2'
+      has_value_for :letter_x,   :in => ('a'..'b'), :message => 'a_custom_message_3'
+      has_value_for :letter_x,   :in => [6, "a"],   :message => 'a_custom_message_4'
+    end
+
+    messages = FailFast.errors_db.errors_for(FailFast.errors_db.keys.first).collect { |e| e.message }
+    messages.should =~ %w(a_custom_message a_custom_message_2 a_custom_message_3 a_custom_message_4)
+  end
+
+
+#-----------------
   context 'when the value is present' do
     it_should_not_raise_an_error('when the (string) key has a value') { has_value_for 'first_key' }
     it_should_not_raise_an_error('when the (symbol) key has a value') { has_value_for :last_key   }
