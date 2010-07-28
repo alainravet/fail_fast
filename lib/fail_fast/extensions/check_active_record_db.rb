@@ -7,6 +7,7 @@ class FailFast
     #
     # Usage :
     #   has_active_record_db :host => 'localhost', :adapter => 'sqlite3', :database=> 'prod_db'
+    #   has_active_record_db :host => 'localhost', :adapter => 'sqlite3', :database=> 'prod_db', :message => 'custom message'
     #
     def has_active_record_db(*params)
       options = params.last.is_a?(Hash) ? params.pop : {}
@@ -19,7 +20,7 @@ class FailFast
         @error_message  = e.message
       end
       unless @success
-        add_error ErrorDetails.new(nil, :active_record_db_connection_error, @error_message)
+        add_error ErrorDetails.new(nil, :active_record_db_connection_error, @error_message, options[:message])
       end
     end
 
@@ -27,14 +28,14 @@ class FailFast
     #
     # Usage :
     #   has_active_record_db_for  'production/database'
+    #   has_active_record_db_for  'production/database', :message => 'custom message'
     #
     def has_active_record_db_for(key, *params)
-      return unless has_value_for key
-      return unless has_value_for "#{key}/adapter"
-      return unless has_value_for "#{key}/database"
-
       p = key_value_regexp_options(key, params)
       key, options = p.key, p.options
+      return unless has_value_for key              , :message => options[:message]
+      return unless has_value_for "#{key}/adapter" , :message => options[:message]
+      return unless has_value_for "#{key}/database", :message => options[:message]
 
       begin
         connection_options = p.value
@@ -46,7 +47,7 @@ class FailFast
         @error_message  = e.message
       end
       unless @success
-        add_error ErrorDetails.new(key, :active_record_db_connection_error, @error_message)
+        add_error ErrorDetails.new(key, :active_record_db_connection_error, @error_message, options[:message])
       end
     end
 

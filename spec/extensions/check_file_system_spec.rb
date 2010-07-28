@@ -19,6 +19,18 @@ describe 'directory_exists' do
     it_should_raise_an_error('test/email',    :directory_not_found, 'when the directory does not exist' ) { directory_exists_for 'test/email'       }
     it_should_raise_an_error('not_a_valid_key',:missing_value,      'when the key is invalid'           ) { directory_exists_for 'not_a_valid_key'  }
   end
+
+  it "should accept a custom message for the 5 cases" do
+    FailFast(SIMPLE_FILE_PATH).check_now.but_fail_later do
+      directory_exists_for 'test/a_file', :message => 'a_custom_message'
+      directory_exists_for 'test/email',  :message => 'a_custom_message_2'
+      directory_exists_for 'INCONNU',     :message => 'a_custom_message_3'
+      directory_exists 'XYZ',             :message => 'a_custom_message_4'
+      directory_exists a_file,            :message => 'a_custom_message_5'
+    end
+    messages = FailFast.errors_db.errors_for(FailFast.errors_db.keys.first).collect { |e| e.message }
+    messages.should =~ %w(a_custom_message a_custom_message_2 a_custom_message_3 a_custom_message_4 a_custom_message_5)
+  end
 end
 
 
@@ -36,5 +48,17 @@ describe 'file_exists' do
     it_should_raise_an_error('test/a_directory', :file_not_found,    'when the path points to a dir'    ) { file_exists_for 'test/a_directory'  }
     it_should_raise_an_error('test/email',       :file_not_found,    'when the file does not exist'     ) { file_exists_for 'test/email'        }
     it_should_raise_an_error('not_a_valid_key',  :missing_value,     'when the key is invalid'          ) { file_exists_for 'not_a_valid_key'   }
+  end
+
+  it "should accept a custom message for the 5 cases" do
+    FailFast(SIMPLE_FILE_PATH).check_now.but_fail_later do
+      file_exists_for 'test/a_directory', :message => 'a_custom_message'
+      file_exists_for 'test/email',       :message => 'a_custom_message_2'
+      file_exists_for 'INCONNU',          :message => 'a_custom_message_3'
+      file_exists 'XYZ',                  :message => 'a_custom_message_4' 
+      file_exists a_dir,                  :message => 'a_custom_message_5'
+    end
+    messages = FailFast.errors_db.errors_for(FailFast.errors_db.keys.first).collect { |e| e.message }
+    messages.should =~ %w(a_custom_message a_custom_message_2 a_custom_message_3 a_custom_message_4 a_custom_message_5)
   end
 end

@@ -5,14 +5,14 @@ class FailFast
     #  has_email_for 'test/admin_email'
     #
     def has_email_for(key, *params)
-      return unless has_value_for key
-
       p = key_value_regexp_options(key, params)
       key, options = p.key, p.options
 
+      return unless has_value_for key, :message =>  options[:message]
+
       value = value_for_deep_key(key)
       if EmailValidator.invalid_email_address?(value)
-        add_error ErrorDetails.new(key, :not_an_email, value)
+        add_error ErrorDetails.new(key, :not_an_email, value, options[:message])
       end
     end
   end

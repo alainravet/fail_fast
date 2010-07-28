@@ -19,4 +19,14 @@ before(:all) do
   it_should_raise_an_error('test/url_not_reachable', :url_not_reachable ,'when the url is not reachable') {
     has_url_for 'test/url_not_reachable', :reachable => true
   }
+
+  it "should accept a custom message for the 3 cases" do
+    FailFast(SIMPLE_FILE_PATH).check_now.but_fail_later do
+      has_url_for 'test/email',                                   :message => 'a_custom_message'
+      has_url_for 'inconnu',                                      :message => 'a_custom_message_2'
+      has_url_for 'test/url_not_reachable', :reachable => true,   :message => 'a_custom_message_3'
+    end
+    messages = FailFast.errors_db.errors_for(FailFast.errors_db.keys.first).collect { |e| e.message }
+    messages.should =~ %w(a_custom_message a_custom_message_2 a_custom_message_3)
+  end
 end

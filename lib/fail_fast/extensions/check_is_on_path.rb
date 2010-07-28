@@ -5,10 +5,11 @@ class FailFast
     #
     # Usage
     #   is_on_path 'jruby'
+    #   is_on_path 'jruby', :message => 'custom message'
     #
-    def is_on_path(app, *params)
+    def is_on_path(app, options = {})
       unless found_on_the_path(app)
-        add_error ErrorDetails.new(nil, :not_on_path, app)
+        add_error ErrorDetails.new(nil, :not_on_path, app, options[:message])
       end
     end
 
@@ -16,17 +17,14 @@ class FailFast
     #
     # Usage
     #   is_on_path_for 'file_compressor'
+    #   is_on_path_for 'file_compressor', :message => 'custom message'
     #
-    def is_on_path_for(key, *params)
-      return unless has_value_for key
-
-      p = key_value_regexp_options(key, params)
-
-      key = p.key
+    def is_on_path_for(key, options = {})
+      return unless has_value_for key, :message =>  options[:message]
       app   = value_for_deep_key(key)
 
       unless found_on_the_path(app)
-        add_error ErrorDetails.new(key, :not_on_path, app)
+        add_error ErrorDetails.new(key, :not_on_path, app, options[:message])
       end
     end
 

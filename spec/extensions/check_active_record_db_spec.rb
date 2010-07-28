@@ -36,4 +36,18 @@ describe 'has_ar_db' do
       has_active_record_db_for 'invalid_key'
     }
   end
+
+  it "should accept a custom message for those 3 cases" do
+    exception = StandardError.new('an-error-message')
+    ActiveRecord::Base.should_receive(:establish_connection).twice.and_raise(exception)
+
+    FailFast(SIMPLE_FILE_PATH).check_now.but_fail_later do
+      has_active_record_db_for 'invalid_key',  :message => 'a_custom_message'
+      has_active_record_db_for 'db_connection',  :message => 'a_custom_message_2'
+      has_active_record_db valid_connection_options = {},  :message => 'a_custom_message_3'
+    end
+    messages = FailFast.errors_db.errors_for(FailFast.errors_db.keys.first).collect { |e| e.message }
+    messages.should =~ %w(a_custom_message a_custom_message_2 a_custom_message_3)
+  end
+
 end

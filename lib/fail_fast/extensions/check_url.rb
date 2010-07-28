@@ -11,18 +11,17 @@ class FailFast
     #     has_url_for 'test/server_url', :reachable => true, :may_add_trailing_slash => true
     #
     def has_url_for(key, *params)
-      return unless has_value_for key
-
       p = key_value_regexp_options(key, params)
       key, options = p.key, p.options
+      return unless has_value_for key, :message =>  options[:message]
 
       value = value_for_deep_key(key)
       if UrlValidator.invalid_url?(value)
-        add_error ErrorDetails.new(key, :not_a_url, value)
+        add_error ErrorDetails.new(key, :not_a_url, value, options[:message])
         return
       end
       if true==options.delete(:reachable) && UrlValidator.unreachable_url?(value, options)
-        add_error ErrorDetails.new(key, :url_not_reachable, value)
+        add_error ErrorDetails.new(key, :url_not_reachable, value, options[:message])
       end
     end
   end
