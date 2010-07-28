@@ -37,8 +37,10 @@ Early in your project boot sequence insert this code :
 
 	require 'fail_fast'
 	FailFast("path/to/database.yml").check do
-	  has_active_record_db_for  'production'
+	  has_active_record_db_for  'production', :message => 'The main DB cannot be reached :'
 	end
+
+remark : the :message part is always optional.
 
 
 If the DB connection fails,   
@@ -53,6 +55,7 @@ If the DB connection fails,
     +------------------------------------------------------------------------------------------
     |      error                                   key                                value
     +------------------------------------------------------------------------------------------
+    |  The main DB cannot be reached :
     |  * active_record_db_connection_error      production                          Unknown database 'a_db'
     +------------------------------------------------------------------------------------------
 
@@ -79,7 +82,7 @@ If you want to collect and report all the errors before exiting, use `check_now.
 	    has_url_for       'bug_tracker/url', :reachable => true
 	  end
 	
-	  directory_exists_for  '/tmp'
+	  directory_exists_for  '/tmp', :message => 'the log '
 	  file_exists_for       'public/nda.pdf'
 	
 	  skip_if Rails.env.development? do
