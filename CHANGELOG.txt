@@ -1,3 +1,5 @@
+0.5
+  - all checkers methods accept a ':message => "CUSTOM MSG"'
 0.4
   - added `is_on_path`
 0.3.0

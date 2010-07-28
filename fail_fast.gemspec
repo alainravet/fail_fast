@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{fail_fast}
-  s.version = "0.4.0"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alain Ravet"]
-  s.date = %q{2010-07-22}
+  s.date = %q{2010-07-28}
   s.description = %q{raises an error if the yaml contents of a config file does not pass a test script.}
   s.email = %q{alainravet@gmail.com}
   s.extra_rdoc_files = [
@@ -45,6 +45,7 @@ Gem::Specification.new do |s|
      "lib/fail_fast/support/z_only_for_tests.rb",
      "show_all_errors.rb",
      "spec/base/base_commands_spec.rb",
+     "spec/base/error_details_spec.rb",
      "spec/base/errors_storage_spec.rb",
      "spec/base/file_is_empty_spec.rb",
      "spec/base/file_is_missing_spec.rb",
@@ -71,6 +72,7 @@ Gem::Specification.new do |s|
   s.summary = %q{raises an error if the yaml contents of a config file does pass a test script.}
   s.test_files = [
     "spec/base/base_commands_spec.rb",
+     "spec/base/error_details_spec.rb",
      "spec/base/errors_storage_spec.rb",
      "spec/base/file_is_empty_spec.rb",
      "spec/base/file_is_missing_spec.rb",
