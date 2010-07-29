@@ -1,6 +1,6 @@
 class FailFast
 
-  module Messaging
+  module Messaging #:nodoc:
 
     def default_message_for(e)
       qc_value  = "'#{vcol(e.value)}'"

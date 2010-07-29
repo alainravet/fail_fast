@@ -20,7 +20,7 @@ class FailFast
     !global_errors.empty?
   end
 
-  def self.errors_db
+  def self.errors_db #:nodoc:
     @@_errors_db
   end
 

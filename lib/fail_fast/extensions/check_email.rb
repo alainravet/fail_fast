@@ -17,7 +17,7 @@ class FailFast
     end
   end
 
-  module EmailValidator
+  module EmailValidator #:nodoc:
     VALID_EMAIL_ADDRESS_REGEXP = /^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$/
 
     def self.valid_email_address?(email)

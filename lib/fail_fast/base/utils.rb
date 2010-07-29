@@ -1,8 +1,9 @@
 class FailFast
 
-  class Params < Struct.new(:key, :value, :regexp, :options) ; end
+  class Params < Struct.new(:key, :value, :regexp, :options) #:nodoc:
+  end
 
-  module Utils
+  module Utils #:nodoc:
 
     def blank?(value)
       value.nil? || (value.is_a?(String) && '' == value.strip)

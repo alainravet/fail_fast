@@ -26,7 +26,7 @@ class FailFast
     end
   end
 
-  module UrlValidator
+  module UrlValidator #:nodoc:
     IPv4_PART = /\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]/  # 0-255
     VALID_URL_REGEXP = %r{
       \A

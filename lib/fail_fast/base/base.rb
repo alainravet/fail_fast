@@ -34,7 +34,7 @@ class FailFast
       self.instance_eval(&block)
     end
 
-    def print_errors
+    def print_errors #:nodoc:
       @errors = errors
       puts "\n\n\n" + ERB.new(File.read(ERB_TEMPLATE)).result(binding) + "\n\n"
     end

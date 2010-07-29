@@ -1,5 +1,5 @@
 class FailFast
-  class ErrorDb
+  class ErrorDb #:nodoc:
     def initialize
       @@hash = {}
     end
