@@ -1,6 +1,9 @@
-0.5
+0.5.1
+  - fixed .failed? bug
+  - fixed key prefixes (broken in 0.5.0)
+0.5.0
   - all checkers methods accept a ':message => "CUSTOM MSG"'
-0.4
+0.4.0
   - added `is_on_path`
 0.3.0
   - added value_of()

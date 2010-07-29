@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{fail_fast}
-  s.version = "0.5.0"
+  s.version = "0.5.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alain Ravet"]
-  s.date = %q{2010-07-28}
+  s.date = %q{2010-07-29}
   s.description = %q{raises an error if the yaml contents of a config file does not pass a test script.}
   s.email = %q{alainravet@gmail.com}
   s.extra_rdoc_files = [
@@ -59,6 +59,7 @@ Gem::Specification.new do |s|
      "spec/extensions/check_mongo_db_spec.rb",
      "spec/extensions/check_url_spec.rb",
      "spec/extensions/check_value_spec.rb",
+     "spec/extensions/key_prefix_spec.rb",
      "spec/fixtures/empty.yml",
      "spec/fixtures/simple.yml",
      "spec/how_to_use_spec.rb",
@@ -86,6 +87,7 @@ Gem::Specification.new do |s|
      "spec/extensions/check_mongo_db_spec.rb",
      "spec/extensions/check_url_spec.rb",
      "spec/extensions/check_value_spec.rb",
+     "spec/extensions/key_prefix_spec.rb",
      "spec/how_to_use_spec.rb",
      "spec/spec_helper.rb"
   ]
