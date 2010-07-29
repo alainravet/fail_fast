@@ -3,6 +3,7 @@ require 'fail_fast'
 require 'spec'
 require 'spec/autorun'
 require 'fakeweb'
+gem 'mongo', '1.0'
 require 'mongo'
 
 SPEC_DIR = File.dirname(File.expand_path(__FILE__))

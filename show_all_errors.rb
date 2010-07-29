@@ -1,4 +1,5 @@
 require 'rubygems'
+gem 'mongo', '1.0'
 require 'mongo'
 
 def fake_http_server
