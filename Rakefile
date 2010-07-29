@@ -43,5 +43,8 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "config_file_check #{version}"
   rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('CHANGELOG.txt')
+  rdoc.rdoc_files.include('VERSION')
+  rdoc.rdoc_files.include('LICENSE')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
