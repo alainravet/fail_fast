@@ -4,8 +4,9 @@ describe 'has_url_for()' do
 before(:all) do
     FakeWeb.register_uri(:get, "http://example.com/index.html", :body => "I'm reachable!")
     FakeWeb.register_uri(:get, "http://localhost/index.html"  , :body => "I'm reachable!")
-    FakeWeb.register_uri(:get, "http://example.com"           , :body => "I'm reachable!")
-  end
+    FakeWeb.register_uri(:get, "http://localhost/index.html"  , :body => "I'm reachable!")
+    FakeWeb.register_uri(:get, "http://localhost:3200"        , :body => "I'm reachable!")
+end
 
   it_should_not_raise_an_error('when the value is an url') { has_url_for 'test/url' }
   it_should_not_raise_an_error("when the domain is 'localhost'") { has_url_for 'test/url_localhost' }

@@ -31,11 +31,11 @@ class FailFast
     #   directory_exists_for 'foo/config'
     #   directory_exists_for 'foo/config', :message => 'custom message'
     #
-    def directory_exists_for(key, *params)
-      p = key_value_regexp_options(key, params)
+    def directory_exists_for(raw_key, *params)
+      p = key_value_regexp_options(raw_key, params)
       key, options = p.key, p.options
 
-      return unless has_value_for key, :message => options[:message]
+      return unless has_value_for raw_key, :message => options[:message]
 
       path = value_for_deep_key(key)
       unless File.exists?(path) && File.directory?(path)
@@ -49,11 +49,11 @@ class FailFast
     #   file_exists_for 'foo/config/app.yml'
     #   file_exists_for 'foo/config/app.yml', :message => 'custom message'
     #
-    def file_exists_for(key, *params)
-      p = key_value_regexp_options(key, params)
+    def file_exists_for(raw_key, *params)
+      p = key_value_regexp_options(raw_key, params)
       key, options = p.key, p.options
 
-      return unless has_value_for key, :message => options[:message]
+      return unless has_value_for raw_key, :message => options[:message]
 
       path = value_for_deep_key(key)
       unless File.exists?(path) && File.file?(path)

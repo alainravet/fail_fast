@@ -4,12 +4,16 @@ last_key: dernier
 app_on_path: ls
 app_not_on_path: ls0123
 test:
+  app_on_path: ls
   host: localhost
   url: http://example.com/index.html
   url_localhost: http://localhost/index.html
   email: test@example.com
   url_reachable: http://example.com
   url_not_reachable: http://xxx.zzz
+  db_connection:
+    adapter: mysql
+    database: a_db
   mongoDB:
     host: localhost
     database: sample_mongoDB
@@ -33,3 +37,6 @@ db_connection:
 number_six: 6
 letter_x: x
 nda_file: <%= SPEC_DIR + '/fixtures/simple.yml' %>
+development:
+  t_url: 'http://localhost:3200'
+  t_email: t_email@test.com

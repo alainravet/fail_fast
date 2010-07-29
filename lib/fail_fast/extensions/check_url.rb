@@ -10,10 +10,10 @@ class FailFast
     #   (ex: http://example.com  + http://example.com/)
     #     has_url_for 'test/server_url', :reachable => true, :may_add_trailing_slash => true
     #
-    def has_url_for(key, *params)
-      p = key_value_regexp_options(key, params)
+    def has_url_for(raw_key, *params)
+      p = key_value_regexp_options(raw_key, params)
       key, options = p.key, p.options
-      return unless has_value_for key, :message =>  options[:message]
+      return unless has_value_for raw_key, :message =>  options[:message]
 
       value = value_for_deep_key(key)
       if UrlValidator.invalid_url?(value)

@@ -30,12 +30,12 @@ class FailFast
     #   has_active_record_db_for  'production/database'
     #   has_active_record_db_for  'production/database', :message => 'custom message'
     #
-    def has_active_record_db_for(key, *params)
-      p = key_value_regexp_options(key, params)
+    def has_active_record_db_for(raw_key, *params)
+      p = key_value_regexp_options(raw_key, params)
       key, options = p.key, p.options
-      return unless has_value_for key              , :message => options[:message]
-      return unless has_value_for "#{key}/adapter" , :message => options[:message]
-      return unless has_value_for "#{key}/database", :message => options[:message]
+      return unless has_value_for raw_key              , :message => options[:message]
+      return unless has_value_for "#{raw_key}/adapter" , :message => options[:message]
+      return unless has_value_for "#{raw_key}/database", :message => options[:message]
 
       begin
         connection_options = p.value
