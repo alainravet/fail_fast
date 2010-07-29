@@ -1,6 +1,6 @@
 # ONLY USED BY TESTS !!
 class FailFast::ErrorDb
   def global_data
-    errors_for(@@hash.keys.first)
+    @@hash.keys.collect {|key|errors_for(key)}.flatten
   end
 end
