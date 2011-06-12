@@ -20,7 +20,7 @@ describe 'directory_exists' do
     it_should_raise_an_error('not_a_valid_key',:missing_value,      'when the key is invalid'           ) { directory_exists_for 'not_a_valid_key'  }
   end
 
-  it "should accept a custom message for the 5 cases" do
+  it "accepts a custom message for the 5 cases" do
     FailFast(SIMPLE_FILE_PATH).check_now.but_fail_later do
       directory_exists_for 'test/a_file', :message => 'a_custom_message'
       directory_exists_for 'test/email',  :message => 'a_custom_message_2'
@@ -50,7 +50,7 @@ describe 'file_exists' do
     it_should_raise_an_error('not_a_valid_key',  :missing_value,     'when the key is invalid'          ) { file_exists_for 'not_a_valid_key'   }
   end
 
-  it "should accept a custom message for the 5 cases" do
+  it "accepts a custom message for the 5 cases" do
     FailFast(SIMPLE_FILE_PATH).check_now.but_fail_later do
       file_exists_for 'test/a_directory', :message => 'a_custom_message'
       file_exists_for 'test/email',       :message => 'a_custom_message_2'

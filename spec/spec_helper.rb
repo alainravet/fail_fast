@@ -33,7 +33,7 @@ module DSLMacros
   module ClassMethods
 
     def it_should_not_raise_an_error(msg, &block)
-      it "should not raise an error #{msg}" do
+      it "does not raise an error #{msg}" do
         capture_stdout
         begin
           FailFast(SIMPLE_FILE_PATH).check do
@@ -52,7 +52,7 @@ module DSLMacros
     end
 
     def it_should_raise_an_error(key, kind, msg, &block)
-      it "should raise an error #{kind}-#{key}-#{msg}" do
+      it "raises an error #{kind}-#{key}-#{msg}" do
         capture_stdout
         begin
           FailFast(SIMPLE_FILE_PATH).check do
@@ -75,7 +75,7 @@ module DSLMacros
       end
     end
     def it_should_raise_a_direct_error(value, kind, msg, &block)
-      it "should raise an error #{kind}-#{value}-#{msg}" do
+      it "raises an error #{kind}-#{value}-#{msg}" do
         capture_stdout
         begin
           FailFast(SIMPLE_FILE_PATH).check do

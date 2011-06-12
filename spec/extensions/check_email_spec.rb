@@ -11,7 +11,7 @@ describe 'has_email_for()' do
     has_email_for 'invalid_key'
   }
 
-  it "should accept a custom message for the 2 cases" do
+  it "accepts a custom message for the 2 cases" do
     FailFast(SIMPLE_FILE_PATH).check_now.but_fail_later do
       has_email_for 'invalid_key', :message => 'a_custom_message'
       has_email_for 'test/url',    :message => 'a_custom_message_2'

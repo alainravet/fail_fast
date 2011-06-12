@@ -10,7 +10,7 @@ describe 'has_mongoDB' do
         has_mongoDB 'localhost'
       }
 
-      it "should accept a custom message for this case" do
+      it "accepts a custom message for this case" do
         FailFast(SIMPLE_FILE_PATH).check_now.but_fail_later do
           has_mongoDB 'localhost',  :message => 'a_custom_message'
           has_mongoDB 'localhost',  :timeout => 1, :message => 'a_custom_message_2'
@@ -33,7 +33,7 @@ describe 'has_mongoDB' do
       it_should_raise_a_direct_error('not_a_known_db', :mongoDB_db_not_found, 'when the database cannot be found on the mongoDB') {
         has_mongoDB 'localhost', 'not_a_known_db'
       }
-      it "should accept a custom message for this case" do
+      it "accepts a custom message for this case" do
         FailFast(SIMPLE_FILE_PATH).check_now.but_fail_later do
           has_mongoDB 'localhost', 'not_a_known_db',  :message => 'a_custom_message'
         end
@@ -51,7 +51,7 @@ describe 'has_mongoDB' do
         has_mongoDB_for 'test/unreachable_mongoDB_server'
       }
       it_should_raise_an_error('not_a_valid_key', :missing_value, 'when the key is invalid') { has_mongoDB_for 'not_a_valid_key' }
-      it "should accept a custom message for those 2 cases" do
+      it "accepts a custom message for those 2 cases" do
         FailFast(SIMPLE_FILE_PATH).check_now.but_fail_later do
           has_mongoDB_for 'not_a_valid_key',                  :message => 'a_custom_message'
           has_mongoDB_for 'test/unreachable_mongoDB_server',  :message => 'a_custom_message_2'
@@ -75,7 +75,7 @@ describe 'has_mongoDB' do
       it_should_raise_an_error('test/unknown_mongoDB_db', :mongoDB_db_not_found,'when the database cannot be found on the mongoDB') {
         has_mongoDB_for 'test/unknown_mongoDB_db'
       }
-      it "should accept a custom message for this case" do
+      it "accepts a custom message for this case" do
         FailFast(SIMPLE_FILE_PATH).check_now.but_fail_later do
           has_mongoDB_for 'test/unknown_mongoDB_db',  :message => 'a_custom_message'
         end

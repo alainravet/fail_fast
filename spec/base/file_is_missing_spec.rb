@@ -4,12 +4,12 @@ describe "ConfigCheck on an unknown file" do
   before(:all) { capture_stdout }
   after( :all) { restore_stdout }
 
-  it "should not raise an error in new()" do
+  it "does not raise an error in new()" do
     FailFast(UNKNOWN_FILE_PATH)
     fail if FailFast.failed?
   end
 
-  it "should raise an error in fail_fast()" do
+  it "raises  an error in fail_fast()" do
     lambda {
       FailFast(UNKNOWN_FILE_PATH).check do end
     }.should raise_error(ExitTriggered)
