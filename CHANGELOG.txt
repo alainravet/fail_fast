@@ -1,3 +1,4 @@
+  - replace Jeweler & Rubygems by Bundler
 0.5.1
   - fixed .failed? bug
   - fixed key prefixes (broken in 0.5.0)
