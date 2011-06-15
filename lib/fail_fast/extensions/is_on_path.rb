@@ -1,5 +1,5 @@
 class FailFast
-  module CheckIsOnPath
+  module IsOnPath
 
     # Ensure the application is on the path
     #
@@ -35,4 +35,4 @@ class FailFast
   end
 end
 
-FailFast.send  :include, FailFast::CheckIsOnPath
+FailFast.send  :include, FailFast::IsOnPath

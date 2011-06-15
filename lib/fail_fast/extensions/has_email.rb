@@ -1,6 +1,6 @@
 class FailFast
 
-  module CheckEmail
+  module HasEmail
     # Usage
     #  has_email_for 'test/admin_email'
     #
@@ -31,4 +31,4 @@ class FailFast
   end
 end
 
-FailFast.send  :include, FailFast::CheckEmail
+FailFast.send  :include, FailFast::HasEmail

@@ -1,5 +1,5 @@
 class FailFast
-  module CheckValue
+  module HasValue
 
     # Usage
     #  nda_file = value_of(:nda_file)
@@ -46,4 +46,4 @@ class FailFast
   end
 end
 
-FailFast.send  :include, FailFast::CheckValue
+FailFast.send  :include, FailFast::HasValue

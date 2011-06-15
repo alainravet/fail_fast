@@ -1,5 +1,5 @@
 class FailFast
-  module CheckMongoDB
+  module HasMongoDB
 
     # Ensure the mongoDB server can be reached, and the db could be opened :
     #
@@ -59,4 +59,4 @@ class FailFast
   end
 end
 
-FailFast.send  :include, FailFast::CheckMongoDB
+FailFast.send  :include, FailFast::HasMongoDB
