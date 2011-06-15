@@ -22,6 +22,7 @@ class FailFast
       unless @success
         add_error ErrorDetails.new(nil, :active_record_db_connection_error, @error_message, options[:message])
       end
+      @success
     end
 
     # Ensure the ActiveRecord connection can be established :
@@ -49,6 +50,7 @@ class FailFast
       unless @success
         add_error ErrorDetails.new(key, :active_record_db_connection_error, @error_message, options[:message])
       end
+      @success
     end
 
   end

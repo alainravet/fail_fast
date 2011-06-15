@@ -13,16 +13,18 @@ class FailFast
     def has_url_for(raw_key, *params)
       p = key_value_regexp_options(raw_key, params)
       key, options = p.key, p.options
-      return unless has_value_for raw_key, :message =>  options[:message]
+      return false unless has_value_for raw_key, :message =>  options[:message]
 
       value = value_for_deep_key(key)
       if UrlValidator.invalid_url?(value)
         add_error ErrorDetails.new(key, :not_a_url, value, options[:message])
-        return
+        return false
       end
-      if true==options.delete(:reachable) && UrlValidator.unreachable_url?(value, options)
+      failure = true==options.delete(:reachable) && UrlValidator.unreachable_url?(value, options)
+      if failure
         add_error ErrorDetails.new(key, :url_not_reachable, value, options[:message])
       end
+      !failure
     end
   end
 

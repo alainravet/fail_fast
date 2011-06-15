@@ -5,21 +5,25 @@ describe 'is_on_path' do
 
   context '' do
     it_should_not_raise_an_error('when the app is on the path') {
-      is_on_path 'ls'
+      result = is_on_path 'ls'
+      result.should == true
     }
 
     it_should_raise_a_direct_error('ls987654321', :not_on_path, 'when the app is not on the path' ) {
-      is_on_path 'ls987654321'
+      result = is_on_path 'ls987654321'
+      result.should == false
     }
   end
 
   context '_for' do
     it_should_not_raise_an_error('when the app is on the path') {
-      is_on_path_for 'app_on_path'
+      result = is_on_path_for 'app_on_path'
+      result.should == true
     }
 
     it_should_raise_an_error('app_not_on_path', :not_on_path, 'when the app is not on the path' ) {
-      is_on_path_for 'app_not_on_path'
+      result = is_on_path_for 'app_not_on_path'
+      result.should == false
     }
   end
 

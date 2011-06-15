@@ -18,12 +18,14 @@ class FailFast
         @conn = Mongo::Connection.new(host, port, options)
       rescue Mongo::ConnectionFailure
         add_error ErrorDetails.new(nil, :mongoDB_server_not_found, host, options[:message])
-        return
+        return false
       end
 
-      if db && !@conn.database_names.include?(db)
+      failure = db && !@conn.database_names.include?(db)
+      if failure
         add_error ErrorDetails.new(nil, :mongoDB_db_not_found, db, options[:message])
       end
+      !failure
     end
 
     # Ensure the mongoDB server can be reached, and the db could be opened :
@@ -35,9 +37,9 @@ class FailFast
     def has_mongoDB_for(key, *params)
       p = key_value_regexp_options(key, params)
       key, options = p.key, p.options
-      return unless has_value_for key              , :message => options[:message]
-      return unless has_value_for "#{key}/host"    , :message => options[:message]
-      return unless has_value_for "#{key}/database", :message => options[:message]
+      return false unless has_value_for key              , :message => options[:message]
+      return false unless has_value_for "#{key}/host"    , :message => options[:message]
+      return false unless has_value_for "#{key}/database", :message => options[:message]
 
 
       value = value_for_deep_key(key)
@@ -47,13 +49,15 @@ class FailFast
         @conn = Mongo::Connection.new(host, port)
       rescue Mongo::ConnectionFailure
         add_error ErrorDetails.new(key, :mongoDB_server_not_found, host, options[:message])
-        return
+        return false
       end
 
       must_check_db = !(false == options[:check_database])
-      if must_check_db && !@conn.database_names.include?(db)
+      failure = must_check_db && !@conn.database_names.include?(db)
+      if failure
         add_error ErrorDetails.new(key, :mongoDB_db_not_found, db, options[:message])
       end
+      !failure
     end
 
   end

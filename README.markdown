@@ -135,7 +135,21 @@ If it fails, you'll get a report like this :
     |  * fail                                                                       a custom failure message
     +------------------------------------------------------------------------------------------
 
-### Example 3 : print an additional custom message if errors were detected
+### Example 3 : capture - and handle - individual errors
+
+	FailFast().check_now.but_fail_later do
+	  directory_exists_for  '/cache'                # default error handling/message
+
+	  unless directory_exists_for  '/log'           # custom error handling
+	    puts "The /log directory is missing"        #  ...
+	    puts "create it with $ mkdir /log"          #  ...
+	  end                                           #  ...
+	end
+
+	FailFast.fail_now   # exit it an error was detected in any of the 3 blocks above.
+
+
+### Example 4 : print an additional custom message if errors were detected
 
 	...	# code like in the cases above.
 

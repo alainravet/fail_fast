@@ -6,6 +6,10 @@ a_file  = SPEC_DIR + '/fixtures/simple.yml'
 
 describe 'directory_exists' do
   context '' do
+    it_should_return_true( 'when the directory exists'          ) { directory_exists a_dir }
+    it_should_return_false('when the directory does not exists' ) { directory_exists 'XYZ'  }
+    it_should_return_false('when the directory is a dir'        ) { directory_exists a_file  }
+
     it_should_not_raise_an_error('when the directory exists'                                            ) { directory_exists a_dir }
 
     it_should_raise_a_direct_error('XYZ',     :directory_not_found, 'when the directory does not exist' ) { directory_exists 'XYZ' }
@@ -13,6 +17,10 @@ describe 'directory_exists' do
   end
 
   context '_for' do
+    it_should_return_true( 'when the file exists'          ) { directory_exists_for 'test/a_directory' }
+    it_should_return_false('when the file does not exists' ) { directory_exists_for 'test/UNKNOWN'  }
+    it_should_return_false('when the file is a dir'        ) { directory_exists_for 'test/a_file'  }
+
     it_should_not_raise_an_error('when the directory exists'                                            ) { directory_exists_for 'test/a_directory' }
 
     it_should_raise_an_error('test/a_file',   :directory_not_found, 'when the path points to a File'    ) { directory_exists_for 'test/a_file'      }
@@ -36,6 +44,10 @@ end
 
 describe 'file_exists' do
   context '' do
+    it_should_return_true( 'when the file exists'          ) { file_exists a_file }
+    it_should_return_false('when the file does not exists' ) { file_exists 'XYZ'  }
+    it_should_return_false('when the file is a dir'        ) { file_exists a_dir  }
+
     it_should_not_raise_an_error('when the file exists'                                                 ) { file_exists a_file}
 
     it_should_raise_a_direct_error('XYZ',     :file_not_found, 'when the file does not exist'           ) { file_exists 'XYZ' }
@@ -43,6 +55,10 @@ describe 'file_exists' do
   end
 
   context '_for' do
+    it_should_return_true( 'when the file exists'          ) { file_exists_for 'test/a_file' }
+    it_should_return_false('when the file does not exists' ) { file_exists_for 'test/UNKNOWN'  }
+    it_should_return_false('when the file is a dir'        ) { file_exists_for 'test/a_directory'  }
+
     it_should_not_raise_an_error('when the file exists'                                                 ) { file_exists_for 'test/a_file' }
 
     it_should_raise_an_error('test/a_directory', :file_not_found,    'when the path points to a dir'    ) { file_exists_for 'test/a_directory'  }

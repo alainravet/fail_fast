@@ -8,12 +8,14 @@ class FailFast
       p = key_value_regexp_options(raw_key, params)
       key, options = p.key, p.options
 
-      return unless has_value_for raw_key, :message =>  options[:message]
+      return false unless has_value_for raw_key, :message =>  options[:message]
 
       value = value_for_deep_key(key)
-      if EmailValidator.invalid_email_address?(value)
+      failure = EmailValidator.invalid_email_address?(value)
+      if failure
         add_error ErrorDetails.new(key, :not_an_email, value, options[:message])
       end
+      !failure
     end
   end
 

@@ -40,7 +40,7 @@ class FailFast
       elsif options.is_a?(Hash) && options[:in].is_a?(Array)
         add_error ErrorDetails.new(key, :value_not_in_array,   p.value, message) unless options[:in].include?(p.value)
       end
-      no_new_error = nof_errors == errors.size
+      success = no_new_error = nof_errors == errors.size
     end
 
   end

@@ -32,6 +32,41 @@ module DSLMacros
   end
   module ClassMethods
 
+    def it_should_return_true(msg, &block)
+      it "returns true #{msg}" do
+        capture_stdout
+        begin
+          FailFast(SIMPLE_FILE_PATH).check.but_fail_later do
+            raise "BUG : @@errorz should be empty \n#{errors.inspect}"  unless errors.empty?
+            result = self.instance_eval(&block)
+            #TODO : BETTER ERROR REPORTING
+            result.should == true
+          end
+        rescue => e
+          raise e
+        end
+        restore_stdout
+      end
+    end
+
+
+    def it_should_return_false(msg, &block)
+      it "returns false #{msg}" do
+        capture_stdout
+        begin
+          FailFast(SIMPLE_FILE_PATH).check.but_fail_later do
+            raise "BUG : @@errorz should be empty \n#{errors.inspect}"  unless errors.empty?
+            result = self.instance_eval(&block)
+            #TODO : BETTER ERROR REPORTING
+            result.should == false
+          end
+        rescue => e
+          raise e
+        end
+        restore_stdout
+      end
+    end
+
     def it_should_not_raise_an_error(msg, &block)
       it "does not raise an error #{msg}" do
         capture_stdout

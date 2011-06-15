@@ -33,10 +33,14 @@ describe 'has_value_for()' do
 
   it "accepts a custom message for the 4 cases" do
     FailFast(SIMPLE_FILE_PATH).check_now.but_fail_later do
-      has_value_for 'inconnu',   /localhost/,       :message => 'a_custom_message'
-      has_value_for :first_key,  /nomatchhere/,     :message => 'a_custom_message_2'
-      has_value_for :letter_x,   :in => ('a'..'b'), :message => 'a_custom_message_3'
-      has_value_for :letter_x,   :in => [6, "a"],   :message => 'a_custom_message_4'
+      result = has_value_for 'inconnu',   /localhost/,       :message => 'a_custom_message'
+      result.should == false
+      result = has_value_for :first_key,  /nomatchhere/,     :message => 'a_custom_message_2'
+      result.should == false
+      result = has_value_for :letter_x,   :in => ('a'..'b'), :message => 'a_custom_message_3'
+      result.should == false
+      result = has_value_for :letter_x,   :in => [6, "a"],   :message => 'a_custom_message_4'
+      result.should == false
     end
 
     messages = FailFast.errors_db.errors_for(FailFast.errors_db.keys.first).collect { |e| e.message }

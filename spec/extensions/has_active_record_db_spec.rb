@@ -6,14 +6,16 @@ describe 'has_ar_db' do
       conn = Object.new ; conn.should_receive(:active?).and_return(true)
       ActiveRecord::Base.should_receive(:connection).and_return(conn)
 
-      has_active_record_db :host => 'localhost', :adapter => 'mysql', :database=> 'a-db', :username => 'root'
+      result = has_active_record_db :host => 'localhost', :adapter => 'mysql', :database=> 'a-db', :username => 'root'
+      result.should == true
     }
 
     it_should_raise_a_direct_error('ze-error-message', :active_record_db_connection_error, 'when the connection fails' ) {
       exception = StandardError.new('ze-error-message')
       ActiveRecord::Base.should_receive(:establish_connection).and_raise(exception)
 
-      has_active_record_db valid_connection_options = {}
+      result = has_active_record_db valid_connection_options = {}
+      result.should == false
     }
   end
 
@@ -22,18 +24,21 @@ describe 'has_ar_db' do
       conn = Object.new ; conn.should_receive(:active?).and_return(true)
       ActiveRecord::Base.should_receive(:connection).and_return(conn)
 
-      has_active_record_db_for 'db_connection'
+      result = has_active_record_db_for 'db_connection'
+      result.should == true
     }
 
     it_should_raise_an_error('db_connection', :active_record_db_connection_error, 'when the connection fails' ) {
       exception = StandardError.new('an-error-message')
       ActiveRecord::Base.should_receive(:establish_connection).and_raise(exception)
 
-      has_active_record_db_for 'db_connection'
+      result = has_active_record_db_for 'db_connection'
+      result.should == false
     }
 
     it_should_raise_an_error('invalid_key', :missing_value, 'when the key is invalid' ) {
-      has_active_record_db_for 'invalid_key'
+      result = has_active_record_db_for 'invalid_key'
+      result.should == false
     }
   end
 

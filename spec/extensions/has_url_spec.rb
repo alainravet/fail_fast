@@ -8,8 +8,11 @@ before(:all) do
     FakeWeb.register_uri(:get, "http://localhost:3200"        , :body => "I'm reachable!")
 end
 
+  it_should_return_true(       'when the value is an url') { has_url_for 'test/url' }
   it_should_not_raise_an_error('when the value is an url') { has_url_for 'test/url' }
   it_should_not_raise_an_error("when the domain is 'localhost'") { has_url_for 'test/url_localhost' }
+
+  it_should_return_false(                            'when the value is not an url') { has_url_for 'test/email' }
   it_should_raise_an_error('test/email', :not_a_url, 'when the value is not an url') { has_url_for 'test/email' }
 
   it_should_raise_an_error('not_a_valid_key', :missing_value ,'when the value is blank or absent') { has_url_for 'not_a_valid_key' }
