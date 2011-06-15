@@ -4,7 +4,7 @@ describe "FailFast.check_now.but_fail_later" do
   before(:all) { capture_stdout }
   after( :all) { restore_stdout }
 
-  it 'should not raise an error on the check(..) call' do
+  it 'does not raise an error on the check(..) call' do
     lambda {
       FailFast(UNKNOWN_FILE_PATH).check_now.but_fail_later {}
     }.should_not raise_error
@@ -21,13 +21,13 @@ describe "FailFast.check_now.but_fail_later" do
       FailFast(EMPTY_FILE_PATH  ).check_now.but_fail_later {} #no errors in the last block
     end
 
-    it("should detect and collect all the errors") {
+    it("detects and collect all the errors") {
       FailFast.errors_db.errors_for(FailFast::ErrorDb.key_for(UNKNOWN_FILE_PATH)).collect(&:kind).should == [:config_file_not_found]
       FailFast.errors_db.errors_for(FailFast::ErrorDb.key_for(SIMPLE_FILE_PATH )).collect(&:kind).should == [:missing_value, :missing_value]
       FailFast.errors_db.errors_for(FailFast::ErrorDb.key_for(EMPTY_FILE_PATH  )).collect(&:kind).should == []
     }
     context "after FailFast.fail_now" do
-      it "should raise an error" do
+      it "raises  an error" do
         lambda {
           FailFast.fail_now
         }.should raise_error(ExitTriggered)

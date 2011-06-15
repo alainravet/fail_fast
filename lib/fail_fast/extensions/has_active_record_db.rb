@@ -1,7 +1,7 @@
 require 'active_record'
 
 class FailFast
-  module CheckActiveRecordDB
+  module HasActiveRecordDB
 
     # Ensure the ActiveRecord connection can be established :
     #
@@ -54,7 +54,7 @@ class FailFast
   end
 end
 
-FailFast.send  :include, FailFast::CheckActiveRecordDB
+FailFast.send  :include, FailFast::HasActiveRecordDB
 
 # ActiveRecord::Base.establish_connection(
 #    :adapter  => "mysql",

@@ -1,6 +1,6 @@
 class FailFast
 
-  module CheckUrl
+  module HasUrl
     # Usage
     #   test if the url is valid :
     #     has_url_for 'test/server_url'
@@ -69,4 +69,4 @@ class FailFast
   end
 end
 
-FailFast.send  :include, FailFast::CheckUrl
+FailFast.send  :include, FailFast::HasUrl

@@ -5,14 +5,14 @@ describe "ConfigCheck on an empty file" do
   after( :each) { restore_stdout }
 
 
-  it "should not raise an error when there are no checks" do
+  it "does not raise an error when there are no checks" do
     lambda {
       FailFast(EMPTY_FILE_PATH).check do end
     }.should_not raise_error
     FailFast.failed?.should be_false
   end
 
-  it "should raise an error when there is a failing check" do
+  it "raises  an error when there is a failing check" do
     lambda {
       FailFast(EMPTY_FILE_PATH).check do
         has_value_for :anykey
@@ -21,7 +21,7 @@ describe "ConfigCheck on an empty file" do
     FailFast.failed?.should be_true
   end
 
-  it "should raise a delayed error when there is a failing check" do
+  it "raises  a delayed error when there is a failing check" do
     lambda {
       FailFast(EMPTY_FILE_PATH).check_now.but_fail_later do
         has_value_for :anykey

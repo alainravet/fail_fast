@@ -1,27 +1,27 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe 'value_of()' do
-  it 'should return nil when the value is blank' do
+  it 'returns nil when the value is blank' do
     FailFast(SIMPLE_FILE_PATH).check { @@val = value_of(:key_with_blank_value) }
     @@val.should be_nil
   end
 
-  it 'should return nil when the key is unknown' do
+  it 'returns nil when the key is unknown' do
     FailFast(EMPTY_FILE_PATH).check { @@val = value_of(:anykey) }
     @@val.should be_nil
   end
-  it 'should return the value when it is a leaf'do
+  it 'returns the value when it is a leaf'do
     FailFast(SIMPLE_FILE_PATH).check { @@val = value_of(:first_key) }
     @@val.should == 'premier'
   end
 
-  it 'should return the values in a hash when the value is a tree' do
+  it 'returns the values in a hash when the value is a tree' do
     FailFast(SIMPLE_FILE_PATH).check { @@val = value_of(:test) }
     @@val.should be_a(Hash)
     @@val['mongoDB']['host'].should == 'localhost'
   end
 
-  it 'should preprend the prefix to the key' do
+  it 'prepends the prefix to the key' do
     FailFast(SIMPLE_FILE_PATH, 'test').check { @@val = value_of(:mongoDB) }
     @@val['host'].should == 'localhost'
   end
@@ -31,7 +31,7 @@ describe 'has_value_for()' do
   before { capture_stdout }
   after  { restore_stdout }
 
-  it "should accept a custom message for the 4 cases" do
+  it "accepts a custom message for the 4 cases" do
     FailFast(SIMPLE_FILE_PATH).check_now.but_fail_later do
       has_value_for 'inconnu',   /localhost/,       :message => 'a_custom_message'
       has_value_for :first_key,  /nomatchhere/,     :message => 'a_custom_message_2'
@@ -101,7 +101,7 @@ describe 'has_value_for()' do
   end
 
   context 'when a prefix is specified' do
-    it "should not raise an error when a prefix is used" do
+    it "does not raise an error when a prefix is used" do
       lambda {
         FailFast(SIMPLE_FILE_PATH, 'test').check do
           has_value_for 'mongoDB/host',    /localhost/

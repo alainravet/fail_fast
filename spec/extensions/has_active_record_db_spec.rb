@@ -37,7 +37,7 @@ describe 'has_ar_db' do
     }
   end
 
-  it "should accept a custom message for those 3 cases" do
+  it "accepts a custom message for those 3 cases" do
     exception = StandardError.new('an-error-message')
     ActiveRecord::Base.should_receive(:establish_connection).twice.and_raise(exception)
 
