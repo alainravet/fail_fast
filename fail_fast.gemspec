@@ -4,7 +4,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name          =   'fail_fast'
-  s.version       =   '0.5.1'
+  s.version       =   '0.5.2'
 
   s.date          =   Time.now.utc.strftime("%Y-%m-%d")
   s.homepage      =   'http://github.com/alainravet/fail_fast'
