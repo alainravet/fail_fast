@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.require_paths =   %w(lib)
 
   s.add_development_dependency 'rspec',         '= 1.3.2'
-  s.add_development_dependency 'activerecord',  '>= 0'
+  s.add_development_dependency 'activerecord',  '= 2.3.12'
   s.add_development_dependency 'mongo',         '>= 0'
   s.add_development_dependency 'fakeweb'
 end

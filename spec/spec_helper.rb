@@ -5,6 +5,7 @@ require 'spec/autorun'
 require 'fakeweb'
 #gem 'mongo', '1.0'
 require 'mongo'
+require 'active_support/inflector'
 
 SPEC_DIR = File.dirname(File.expand_path(__FILE__))
 UNKNOWN_FILE_PATH =   'an_unknown_file_path'
