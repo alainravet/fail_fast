@@ -33,9 +33,13 @@ class FailFast
     end
 
     def report_errors #:nodoc:
-      @errors = errors  # so it's found via  'binding' (as is @config_file_path, ..)
+      context = {
+          :errors_to_report => errors,
+          :config_file_path => @config_file_path,
+          :keys_prefix      => @keys_prefix,
+      }
       @error_reporters.each do |reporter|
-        reporter.report(errors, binding)
+        reporter.report(errors, context)
       end
     end
   end

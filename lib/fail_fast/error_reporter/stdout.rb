@@ -4,8 +4,8 @@ module FailFast::ErrorReporter
 
     ERB_TEMPLATE = File.dirname(__FILE__) + '/../report.txt.erb'
 
-    def report(errors, binding_)
-      puts "\n\n\n" + ERB.new(File.read(FailFast::ErrorReporter::Stdout::ERB_TEMPLATE)).result(binding_) + "\n\n"
+    def report(errors, context)
+      puts "\n\n\n" + ERB.new(File.read(FailFast::ErrorReporter::Stdout::ERB_TEMPLATE)).result(binding) + "\n\n"
     end
 
 private
