@@ -1,7 +1,14 @@
-class FailFast
+module FailFast::ErrorReporter
+  class Stdout
+    include FailFast::ConsoleUtils
 
-  module Messaging #:nodoc:
+    ERB_TEMPLATE = File.dirname(__FILE__) + '/../report.txt.erb'
 
+    def report(errors, context)
+      puts "\n\n\n" + ERB.new(File.read(FailFast::ErrorReporter::Stdout::ERB_TEMPLATE)).result(binding) + "\n\n"
+    end
+
+private
     def default_message_for(e)
       qc_value  = "'#{vcol(e.value)}'"
       qc_key    = "'#{kcol(e.key)}'"
@@ -36,5 +43,3 @@ class FailFast
 
   end
 end
-
-FailFast.send  :include, FailFast::Messaging

@@ -5,6 +5,7 @@ require 'spec/autorun'
 require 'fakeweb'
 #gem 'mongo', '1.0'
 require 'mongo'
+require 'active_support/inflector'
 
 SPEC_DIR = File.dirname(File.expand_path(__FILE__))
 UNKNOWN_FILE_PATH =   'an_unknown_file_path'
@@ -145,4 +146,8 @@ Spec::Runner.configure do |config|
   config.before(:each) do
     FailFast.reset_error_db!
   end
+end
+
+class DummyErrorReporter
+  def report(a,b) ; end
 end

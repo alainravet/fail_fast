@@ -1,7 +1,5 @@
 class FailFast
   module Base
-    ERB_TEMPLATE = File.dirname(__FILE__) + '/../report.txt.erb'
-
     def check(&block)
       fail_now_mode   = block_given? # false in the case of  *.check_now.but_fail_now do .. end
 
@@ -12,7 +10,7 @@ class FailFast
         check_all_rules(&block) if block_given?
       end
       unless errors.empty?
-        print_errors
+        report_errors
         exit(1) if fail_now_mode
       end
       self
@@ -24,7 +22,7 @@ class FailFast
       return if @config_file_not_found
       check_all_rules(&block) if block_given?
       unless errors.empty?
-        print_errors
+        report_errors
       end
     end
   private
@@ -34,9 +32,15 @@ class FailFast
       self.instance_eval(&block)
     end
 
-    def print_errors #:nodoc:
-      @errors = errors
-      puts "\n\n\n" + ERB.new(File.read(ERB_TEMPLATE)).result(binding) + "\n\n"
+    def report_errors #:nodoc:
+      context = {
+          :errors_to_report => errors,
+          :config_file_path => @config_file_path,
+          :keys_prefix      => @keys_prefix,
+      }
+      @error_reporters.each do |reporter|
+        reporter.report(errors, context)
+      end
     end
   end
 end

@@ -1,13 +1,18 @@
-<% if @config_file_path %>
+<%
+    config_file_path = context[:config_file_path]
+    keys_prefix      = context[:keys_prefix]
+    errors_to_report = context[:errors_to_report]
+%>
+<% if config_file_path %>
 +------------------------------------------------------------------------------------------
 |   <%= lred 'FAIL_FAST error' %> : precondition(s) not met in
 |  -----------------
-|     file          :  "<%= @config_file_path %>"
-<% if @keys_prefix%>|     keys prefix  :  <%= @keys_prefix.inspect %>
+|     file          :  "<%= config_file_path %>"
+<% if keys_prefix %>|     keys prefix  :  <%= keys_prefix.inspect %>
 <% end %>+------------------------------------------------------------------------------------------
 <% else %>
 +------------------------------------------------------------------------------------------
 |   <%= lred 'FAIL_FAST error' %> : precondition(s) not met.
 +------------------------------------------------------------------------------------------
-<% end %>| <%= @errors.collect{|e| default_message_for(e)}.join("\n| ") %>
+<% end %>| <%= errors_to_report.collect{|e| default_message_for(e)}.join("\n| ") %>
 +------------------------------------------------------------------------------------------
