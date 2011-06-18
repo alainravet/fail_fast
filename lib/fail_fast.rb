@@ -3,6 +3,7 @@ require 'erb'
 
 require File.expand_path(File.dirname(__FILE__) + '/fail_fast/support/error_db')
 class FailFast
+  attr_reader :error_reporters
 
   @@_errors_db = FailFast::ErrorDb.new
 
@@ -10,6 +11,7 @@ class FailFast
     @config_file_path = config_file_path
     @keys_prefix      = keys_prefix
     @errors_key       = ErrorDb.key_for(config_file_path, keys_prefix)
+    @error_reporters  = [ErrorReporter::Stdout.new]
   end
 
   def self.fail_now
@@ -37,6 +39,7 @@ Dir.glob(File.dirname(__FILE__) + '/fail_fast/support/*.rb'   ) {|file| require 
 Dir.glob(File.dirname(__FILE__) + '/fail_fast/base/*.rb'      ) {|file| require file }
 Dir.glob(File.dirname(__FILE__) + '/fail_fast/extensions/*.rb') {|file| require file }
 
+require 'fail_fast/error_reporter'
 
 # alternative syntax
 def FailFast(config_file_path=nil, keys_prefix=nil)
