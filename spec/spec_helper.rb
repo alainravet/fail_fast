@@ -147,3 +147,7 @@ Spec::Runner.configure do |config|
     FailFast.reset_error_db!
   end
 end
+
+class DummyErrorReporter
+  def report(a,b) ; end
+end

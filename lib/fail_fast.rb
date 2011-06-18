@@ -11,7 +11,8 @@ class FailFast
     @config_file_path = config_file_path
     @keys_prefix      = keys_prefix
     @errors_key       = ErrorDb.key_for(config_file_path, keys_prefix)
-    @error_reporters  = [ErrorReporter::Stdout.new]
+    @error_reporters  = []
+    register_errors_reporter(ErrorReporter::Stdout.new)
   end
 
   def self.fail_now
@@ -32,6 +33,10 @@ class FailFast
 
   def errors
     @@_errors_db.errors_for(@errors_key)
+  end
+
+  def register_errors_reporter(reporter)
+    @error_reporters.push reporter unless @error_reporters.include?(reporter)
   end
 end
 
