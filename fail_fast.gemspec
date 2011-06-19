@@ -28,5 +28,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'webmock'
   s.add_development_dependency 'bson_ext'
   s.add_development_dependency 'bson_ext'
+  s.add_development_dependency 'timecop'
   s.add_development_dependency 'vcr'
 end
