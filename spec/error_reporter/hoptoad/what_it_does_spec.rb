@@ -16,19 +16,6 @@ describe FailFast::ErrorReporter::Hoptoad do
 
   }
 
-  def produce_1_error_in_1_check_block
-    FailFast(EMPTY_FILE_PATH).check.but_fail_later do
-      is_on_path("azertyuiop")
-    end
-  end
-
-  def produce_2_errors_in_1_check_block
-    FailFast(SIMPLE_FILE_PATH).check.but_fail_later do
-      is_on_path("azertyuiop")
-      is_on_path("zizizouzou")
-    end
-  end
-
 #--------------------------------------------------------
 
   before { Timecop.freeze(FROZEN_TIME); } #capture_stdout}
