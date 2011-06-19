@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notice version="2.0">
+  <api-key><%= @api_key %></api-key>
+  <notifier>
+    <name>FailFast Hoptoad Notifier</name>
+    <version>0.1</version>
+    <url>https://github.com/alainravet/fail_fast</url>
+  </notifier>
+  <error>
+    <class>FailFastError</class>
+    <message>FailFastError at <%= FROZEN_TIME %></message>
+    <backtrace>
+      <line method="<%= SIMPLE_FILE_PATH %>" file="App not on path :   'azertyuiop'." number='1'/>
+      <line method="<%= SIMPLE_FILE_PATH %>" file="App not on path :   'zizizouzou'." number='2'/>
+    </backtrace>
+  </error>
+  <server-environment>
+    <project-root>/testapp</project-root>
+    <environment-name>test</environment-name>
+    <app-version>1.0.0</app-version>
+  </server-environment>
+</notice>

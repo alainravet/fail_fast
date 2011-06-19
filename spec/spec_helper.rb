@@ -1,8 +1,10 @@
 require 'rubygems'
 require 'fail_fast'
+
 require 'spec'
 require 'spec/autorun'
 require 'webmock/rspec'
+require 'timecop'
 #gem 'mongo', '1.0'
 require 'mongo'
 require 'active_support/inflector'
@@ -11,6 +13,8 @@ SPEC_DIR = File.dirname(File.expand_path(__FILE__))
 UNKNOWN_FILE_PATH =   'an_unknown_file_path'
 EMPTY_FILE_PATH   =   File.expand_path(File.dirname(__FILE__) + '/fixtures/empty.yml')
 SIMPLE_FILE_PATH  =   File.expand_path(File.dirname(__FILE__) + '/fixtures/simple.yml')
+
+FROZEN_TIME = Time.parse('1999-05-04 03:02:01 +0200')
 
 class ExitTriggered < StandardError ; end
 module Kernel
@@ -142,6 +146,11 @@ module DSLMacros
   end
 end
 
+def evaluate_xml_erb(template)
+  ERB.new(File.read(template)).result(binding).gsub(/[\t\r\n]/, '')
+end
+
+
 require 'vcr'
 
 VCR.config do |c|
@@ -163,3 +172,9 @@ end
 class DummyErrorReporter
   def report(a,b) ; end
 end
+
+#WebMock.allow_net_connect!
+WebMock.allow_net_connect!(:net_http_connect_on_start => true)
+
+VALID_HOPTOAD_API_KEY   = 'db7caf200463760b005ecdb26c978eea'
+INVALID_HOPTOAD_API_KEY = '000'

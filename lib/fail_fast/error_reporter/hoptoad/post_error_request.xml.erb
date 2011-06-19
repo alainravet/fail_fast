@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notice version="2.0">
+  <api-key><%=@api_key%></api-key>
+  <notifier>
+    <name>FailFast Hoptoad Notifier</name>
+    <version>0.1</version>
+    <url>https://github.com/alainravet/fail_fast</url>
+  </notifier>
+  <error>
+    <class>FailFastError</class>
+    <message>FailFastError at <%= Time.now %></message>
+    <backtrace>
+<% errors.each_with_index do |error, i| %>
+      <line method="<%= config_path %>" file="<%= default_message_for(error, false) %>" number='<%= 1+i %>'/>
+<% end %>
+    </backtrace>
+  </error>
+  <server-environment>
+    <project-root><%= project_root %></project-root>
+    <environment-name><%= environment_name %></environment-name>
+    <app-version><%= app_version %></app-version>
+  </server-environment>
+</notice>
