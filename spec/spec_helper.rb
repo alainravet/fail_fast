@@ -155,6 +155,7 @@ Spec::Runner.configure do |config|
   config.include(DSLMacros)
   config.before(:each) do
     FailFast.reset_error_db!
+    FailFast.init_global_error_reporters
   end
   config.extend VCR::RSpec::Macros
 end

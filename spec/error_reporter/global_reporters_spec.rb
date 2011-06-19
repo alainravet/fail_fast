@@ -14,5 +14,9 @@ describe FailFast do
       FailFast.report_to DummyErrorReporter.new
       FailFast.new(nil,nil).error_reporters.collect{|o|o.class}.should == [FailFast::ErrorReporter::Stdout, DummyErrorReporter]
     end
+
+    it "resets the default error reporters between each test" do
+      FailFast.new(nil,nil).error_reporters.collect{|o|o.class}.should == [FailFast::ErrorReporter::Stdout]
+    end
   end
 end
