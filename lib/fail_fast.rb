@@ -29,8 +29,20 @@ class FailFast
     end
 
     # @param reporters [Object] 1 or many error reporters (must respond to :report)
-    def report_to(*reporters)
-      reporters.each do |r| add_global_error_reporter(r) end
+    def report_to(reporter)
+      reporter.is_a?(Hash) ?
+        init_global_error_reporter_from_hash(reporter) :
+        add_global_error_reporter(reporter)
+    end
+
+    def init_global_error_reporter_from_hash(params)
+      [].tap do |reporters|
+        if api_token = params.delete(:hoptoad)
+          r = FailFast::ErrorReporter::Hoptoad.new(api_token)
+          FailFast.report_to r
+          reporters.push(r)
+        end
+      end
     end
 
     def global_error_reporters
@@ -44,6 +56,7 @@ class FailFast
 
     def add_global_error_reporter(reporter)
       global_error_reporters.push(reporter) unless global_error_reporters.include?(reporter)
+      reporter
     end
   end
 

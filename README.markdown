@@ -160,6 +160,19 @@ If it fails, you'll get a report like this :
 	end
 
 
+### Example 5 : also sending errors report to Hoptoad (http://hoptoadapp.com)
+
+    FailFast().check do
+        ...                 # errors only reported to stdout
+	end
+    ...
+	FailFast.report_to :hoptoad => '<your-api-token>'       # <- add this in your FF script
+    ...
+    FailFast().check do
+        ...                 # errors also reported to your Hoptoad account
+	end
+
+
 
 ## Info :
 

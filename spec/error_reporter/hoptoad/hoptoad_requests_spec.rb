@@ -22,8 +22,7 @@ describe FailFast::ErrorReporter::Hoptoad do
   after  { Timecop.return             ; } #restore_stdout}
   before do
     @api_key  = VALID_HOPTOAD_API_KEY
-    @reporter = FailFast::ErrorReporter::Hoptoad.new(@api_key)
-    FailFast.report_to @reporter
+    @reporter = FailFast.report_to(:hoptoad => @api_key).first
   end
 
 #--------------------------------------------------------
