@@ -1,5 +1,3 @@
-api_token='db7caf200463760b005ecdb26c978eea'
-
 module FailFast::ErrorReporter
   class Hoptoad < Base
     REQUEST_ERB_TEMPLATE = File.join(File.dirname(__FILE__), 'hoptoad', 'post_error_request.xml.erb')
