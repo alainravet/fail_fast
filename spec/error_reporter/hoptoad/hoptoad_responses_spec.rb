@@ -5,7 +5,7 @@ describe FailFast::ErrorReporter::Hoptoad do
   context 'when the API token is invalid' do
     use_vcr_cassette :record => :new_episodes
     before do
-      FailFast.init_global_error_reporters
+      FailFast.send :reset_global_error_reporters
       @reporter = FailFast::ErrorReporter::Hoptoad.new(@api_key=INVALID_HOPTOAD_API_KEY)
       FailFast.report_to @reporter
     end
@@ -21,7 +21,7 @@ describe FailFast::ErrorReporter::Hoptoad do
     use_vcr_cassette :record => :new_episodes
 
     before do
-      FailFast.init_global_error_reporters
+      FailFast.send :reset_global_error_reporters
       @reporter = FailFast::ErrorReporter::Hoptoad.new(@api_key=VALID_HOPTOAD_API_KEY)
       FailFast.report_to @reporter
     end
