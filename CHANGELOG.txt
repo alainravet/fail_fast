@@ -1,4 +1,4 @@
-
+0.6.0
   - report errors to Hoptoad (http://hoptoadapp.com)
     ex:
         FailFast.report_to :hoptoad => '<your-api-token>'
