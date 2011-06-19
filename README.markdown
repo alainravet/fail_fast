@@ -109,7 +109,7 @@ If it fails, you'll get a report like this :
     +------------------------------------------------------------------------------------------
     |   FAIL_FAST error : precondition(s) not met in
     |  -----------------
-    |     file         :  "./spec/fixtures/simple.yml"
+    |     file         :  "./spec/_/fixtures/simple.yml"
     |     keys prefix  :  none
     +------------------------------------------------------------------------------------------
     |      error                                   key                                value
@@ -123,9 +123,9 @@ If it fails, you'll get a report like this :
     |  * not_a_url                              test/host                           localhost                      
     |  * url_not_reachable                      test/url_not_reachable              http://xxx.zzz                 
     |  * directory_not_found                                                        /foobarbaz                     
-    |  * directory_not_found                    test/a_file                         ./spec/fixtures/simple.yml     
+    |  * directory_not_found                    test/a_file                         ./spec/_/fixtures/simple.yml
     |  * file_not_found                                                             /tmp/foo/bar/??nOTaFile        
-    |  * file_not_found                         test/a_directory                    ./spec/fixtures                
+    |  * file_not_found                         test/a_directory                    ./spec/_/fixtures
     |  * mongoDB_server_not_found                                                   10.0.0.123                     
     |  * mongoDB_server_not_found               test/mongoDB                        localhost                      
     |  * mongoDB_db_not_found                                                       not_a_known_db                 

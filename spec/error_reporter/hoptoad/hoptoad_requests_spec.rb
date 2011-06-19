@@ -16,19 +16,6 @@ describe FailFast::ErrorReporter::Hoptoad do
 
   }
 
-  def produce_1_error_in_1_check_block
-    FailFast(EMPTY_FILE_PATH).check.but_fail_later do
-      is_on_path("azertyuiop")
-    end
-  end
-
-  def produce_2_errors_in_1_check_block
-    FailFast(SIMPLE_FILE_PATH).check.but_fail_later do
-      is_on_path("azertyuiop")
-      is_on_path("zizizouzou")
-    end
-  end
-
 #--------------------------------------------------------
 
   before { Timecop.freeze(FROZEN_TIME); } #capture_stdout}
@@ -71,38 +58,6 @@ describe FailFast::ErrorReporter::Hoptoad do
 
       request_for_1_error_in_1_block .should have_been_made
       request_for_2_errors_in_1_block.should have_been_made
-    end
-  end
-
-
-#--------------------------------------------------------
-  context 'when the API token is invalid' do
-    use_vcr_cassette :record => :new_episodes
-    before do
-      FailFast.init_global_error_reporters
-      @reporter = FailFast::ErrorReporter::Hoptoad.new(@api_key=INVALID_HOPTOAD_API_KEY)
-      FailFast.report_to @reporter
-    end
-
-    example 'POST => 422' do
-      produce_1_error_in_1_check_block
-      @reporter.response.code.to_i.should == 422
-    end
-  end
-
-
-  context 'when the API token is valid' do
-    use_vcr_cassette :record => :new_episodes
-
-    before do
-      FailFast.init_global_error_reporters
-      @reporter = FailFast::ErrorReporter::Hoptoad.new(@api_key=VALID_HOPTOAD_API_KEY)
-      FailFast.report_to @reporter
-    end
-
-    example 'POST => 200' do
-      produce_1_error_in_1_check_block
-      @reporter.response.code.to_i.should == 200
     end
   end
 

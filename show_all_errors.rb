@@ -34,7 +34,7 @@ FailFast().check_now.but_fail_later do
   fail '_why could not be found on the path' unless `which _why` =~ /_why$/
 end
 
-FailFast(SPEC_DIR + '/fixtures/simple.yml').check_now.but_fail_later do
+FailFast(SPEC_DIR + '/_/fixtures/simple.yml').check_now.but_fail_later do
 
 #test values :
   has_value_for   :first_keyNOT , :message => 'this is a custom message' # single absent key

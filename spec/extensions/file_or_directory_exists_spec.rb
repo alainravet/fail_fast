@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-a_dir   = SPEC_DIR + '/fixtures'
-a_file  = SPEC_DIR + '/fixtures/simple.yml'
+a_dir   = SPEC_DIR + '/_/fixtures'
+a_file  = SPEC_DIR + '/_/fixtures/simple.yml'
 
 
 describe 'directory_exists' do
