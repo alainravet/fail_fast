@@ -6,12 +6,12 @@ class FailFast
   attr_reader :error_reporters
 
   @@_errors_db = FailFast::ErrorDb.new
+  @@global_error_reporters = nil
 
-  def initialize(config_file_path, keys_prefix=nil)
+  def initialize(config_file_path=nil, keys_prefix=nil)
     @config_file_path = config_file_path
     @keys_prefix      = keys_prefix
     @errors_key       = ErrorDb.key_for(config_file_path, keys_prefix)
-    @error_reporters  = []
     register_errors_reporter(*self.class.global_error_reporters)
   end
 
@@ -37,13 +37,19 @@ class FailFast
 
   # @param reporters [Object] 1 or many error reporters (must respond to :report)
   def register_errors_reporter(*reporters)
+    @error_reporters ||= []
     reporters.each do |reporter|
       @error_reporters.push reporter unless @error_reporters.include?(reporter)
     end
   end
 
   def self.global_error_reporters
-    @@global_error_reporters ||= [ErrorReporter::Stdout.new]
+    init_global_error_reporters unless @@global_error_reporters
+    @@global_error_reporters
+  end
+
+  def self.init_global_error_reporters
+    @@global_error_reporters = [ErrorReporter::Stdout.new]
   end
 
   # @param reporters [Object] 1 or many error reporters (must respond to :report)

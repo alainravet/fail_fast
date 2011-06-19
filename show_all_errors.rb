@@ -3,10 +3,10 @@ gem 'mongo', '1.0'
 require 'mongo'
 
 def fake_http_server
-  require 'fakeweb'
-  FakeWeb.register_uri(:get, "http://example.com/index.html", :body => "I'm reachable!")
-  FakeWeb.register_uri(:get, "http://localhost/index.html", :body => "I'm reachable!")
-  FakeWeb.register_uri(:get, "http://example.com", :body => "I'm reachable!")
+  require 'webmock'
+  stub_request(:get, "http://example.com/index.html").to_return(:body => "I'm reachable!")
+  stub_request(:get, "http://localhost/index.html"  ).to_return(:body => "I'm reachable!")
+  stub_request(:get, "http://example.com"           ).to_return(:body => "I'm reachable!")
 end
 def fake_mongo_server_absent
   require 'mocha'

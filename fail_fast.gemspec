@@ -25,5 +25,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec',         '= 1.3.2'
   s.add_development_dependency 'activerecord',  '= 2.3.12'
   s.add_development_dependency 'mongo',         '>= 0'
-  s.add_development_dependency 'fakeweb'
+  s.add_development_dependency 'webmock'
+  s.add_development_dependency 'bson_ext'
+  s.add_development_dependency 'bson_ext'
+  s.add_development_dependency 'vcr'
 end

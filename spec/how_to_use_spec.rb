@@ -35,9 +35,7 @@ describe "typical usage" do
 end
 
 def fake_the_remote_services
-  FakeWeb.register_uri(:get, "http://example.com/index.html", :body => "I'm reachable!")
-  FakeWeb.register_uri(:get, "http://localhost/index.html", :body => "I'm reachable!")
-  FakeWeb.register_uri(:get, "http://example.com", :body => "I'm reachable!")
+  stub_request(:get, "http://example.com"           ).to_return(:body => "I'm reachable!")
 
   conn = Mongo::Connection.new
   conn.should_receive(:database_names).any_number_of_times.and_return %w(sample_mongoDB)
