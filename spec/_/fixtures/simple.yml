@@ -26,9 +26,9 @@ test:
     host: localhost
     database: unknown_mongoDB_db
 
-  a_directory:  <%= SPEC_DIR + '/fixtures' %>
+  a_directory:  <%= SPEC_DIR + '/_/fixtures' %>
 
-  a_file: <%= SPEC_DIR + '/fixtures/simple.yml' %>
+  a_file: <%= SPEC_DIR + '/_/fixtures/simple.yml' %>
 
 db_connection:
   adapter: mysql
@@ -36,7 +36,7 @@ db_connection:
 
 number_six: 6
 letter_x: x
-nda_file: <%= SPEC_DIR + '/fixtures/simple.yml' %>
+nda_file: <%= SPEC_DIR + '/_/fixtures/simple.yml' %>
 development:
   t_url: 'http://localhost:3200'
   t_email: t_email@test.com
