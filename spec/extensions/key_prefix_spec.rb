@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe 'the key prefix' do
 
   example 'works fine in all the checkers' do
-    FakeWeb.register_uri(:get, "http://localhost:3200"        , :body => "I'm reachable!")
+    stub_request(:get, "http://localhost:3200").to_return(:body => "I'm reachable!")
 
     conn = Mongo::Connection.new
     conn.should_receive(:database_names).any_number_of_times.and_return %w(sample_mongoDB)
