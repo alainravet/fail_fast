@@ -1,3 +1,9 @@
+0.6.0
+  - report errors to Hoptoad (http://hoptoadapp.com)
+    ex:
+        FailFast.report_to :hoptoad => '<your-api-token>'
+        ... (rest of your FF script)
+
 0.5.2
   - changed: replace Jeweler & Rubygems by Bundler
   - add: all checkers methods return a success status (true/false)

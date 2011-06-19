@@ -38,7 +38,7 @@ class FailFast
           :config_file_path => @config_file_path,
           :keys_prefix      => @keys_prefix,
       }
-      @error_reporters.each do |reporter|
+      error_reporters.each do |reporter|
         reporter.report(errors, context)
       end
     end
