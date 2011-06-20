@@ -32,3 +32,5 @@ module FailFast::ErrorReporter
 
   end
 end
+
+FailFast::ErrorReporter::Registry.register(:hoptoad, FailFast::ErrorReporter::Hoptoad)

@@ -13,20 +13,20 @@ describe 'FailFast and error reporters :' do
   end
 
   it 'can register multiple error reporters' do
-    ff.register_errors_reporter(DummyErrorReporter.new)
+    ff.activate_errors_reporter(DummyErrorReporter.new)
     ff.error_reporters.collect{|o|o.class}.should == [FailFast::ErrorReporter::Stdout, DummyErrorReporter]
   end
 
   it 'ignores duplicate registration' do
-    ff.register_errors_reporter(DummyErrorReporter.new)
-    ff.register_errors_reporter ff.error_reporters.first
-    ff.register_errors_reporter ff.error_reporters.last
+    ff.activate_errors_reporter(DummyErrorReporter.new)
+    ff.activate_errors_reporter ff.error_reporters.first
+    ff.activate_errors_reporter ff.error_reporters.last
     ff.error_reporters.collect{|o|o.class}.should == [FailFast::ErrorReporter::Stdout, DummyErrorReporter]
   end
 
 
   it "calls all the registered reporters, when an error occurs" do
-    ff.register_errors_reporter(DummyErrorReporter.new)
+    ff.activate_errors_reporter(DummyErrorReporter.new)
     ff.error_reporters[0].should_receive(:report).once
     ff.error_reporters[1].should_receive(:report).once
 

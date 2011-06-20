@@ -19,7 +19,7 @@ FROZEN_TIME = Time.parse('1999-05-04 03:02:01 +0200')
 Spec::Runner.configure do |config|
   config.before(:each) do
     FailFast.reset_error_db!
-    FailFast.send :reset_global_error_reporters
+    FailFast.send :reset_activated_error_reporters
   end
 end
 
