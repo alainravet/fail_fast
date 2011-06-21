@@ -12,7 +12,7 @@ end
 Dir.glob(File.dirname(__FILE__) + '/fail_fast/base/*.rb'          ) {|file| require file }
 Dir.glob(File.dirname(__FILE__) + '/fail_fast/commands/*.rb'      ) {|file| require file }
 require 'fail_fast/error_reporter'
-Dir.glob(File.dirname(__FILE__) + '/fail_fast/error_reporter/*.rb') {|file| require file }
+Dir.glob(File.dirname(__FILE__) + '/fail_fast/error_reporters/*.rb') {|file| require file }
 
 # alternative syntax
 def FailFast(config_file_path=nil, keys_prefix=nil)
