@@ -21,7 +21,6 @@ module FailFast::ErrorReporter
     end
 
   private
-
     def errors_to_backtrace(errors, path)
       [].tap do |traces|
         errors.each_with_index do |error, i|
@@ -42,7 +41,7 @@ module FailFast::ErrorReporter
       ::HoptoadNotifier.notify(
         :error_class   => "FailFast Error",
         :error_message => msg,
-        :backtrace     => backtrace
+        :backtrace     => backtrace,
       )
     end
   end
