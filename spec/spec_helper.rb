@@ -20,8 +20,9 @@ Spec::Runner.configure do |config|
   config.before(:each) do
     FailFast.reset_error_db!
     FailFast.send :reset_activated_error_reporters
+    # to make the tests run on any machine/in any location :
+    $fail_fast_shorten_path_in_reports = true
   end
 end
-
 
 Dir[File.join(SPEC_DIR, '_/support/**/*.rb')].each {|f| require f}

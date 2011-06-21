@@ -5,7 +5,7 @@
     uri: http://hoptoadapp.com:80/notifier_api/v2/notices
     body: ! '<?xml version="1.0" encoding="UTF-8"?><notice version="2.0">  <api-key>YOUR-API-KEY-YERE-db7caf200463760b005ecdb26c978eea</api-key>  <notifier>    <name>FailFast
       Hoptoad Notifier</name>    <version>0.1</version>    <url>https://github.com/alainravet/fail_fast</url>  </notifier>  <error>    <class>FailFastError</class>    <message>FailFastError
-      at 1999-05-04 03:02:01 +0200</message>    <backtrace>      <line method="/Volumes/dropbox/Dropbox/dev/myos/fail_fast/spec/_/fixtures/empty.yml"
+      at 1999-05-04 03:02:01 +0200</message>    <backtrace>      <line method="empty.yml"
       file="App not on path :   ''azertyuiop''." number=''1''/>    </backtrace>  </error>  <server-environment>    <project-root>/testapp</project-root>    <environment-name>test</environment-name>    <app-version>1.0.0</app-version>  </server-environment></notice>'
     headers:
       accept:
@@ -26,10 +26,10 @@
       x-powered-by:
       - Phusion Passenger (mod_rails/mod_rack) 3.0.6
       x-runtime:
-      - '0.084877'
+      - '0.352245'
       server:
       - nginx/0.8.54 + Phusion Passenger 3.0.6 (mod_rails/mod_rack)
     body: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<notice>\n  <error-id type=\"integer\">8252669</error-id>\n
-      \ <url>http://failfast.hoptoadapp.com/errors/8252669/notices/1453782749</url>\n
-      \ <id type=\"integer\">1453782749</id>\n</notice>\n"
+      \ <url>http://failfast.hoptoadapp.com/errors/8252669/notices/1474837817</url>\n
+      \ <id type=\"integer\">1474837817</id>\n</notice>\n"
     http_version: '1.1'
