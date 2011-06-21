@@ -1,4 +1,4 @@
-Dir.glob(File.dirname(__FILE__) + '/../support/*.rb'   ) {|file| require file }
+Dir.glob(File.dirname(__FILE__) + '/support/*.rb'   ) {|file| require file }
 
 class FailFast
   module Base
