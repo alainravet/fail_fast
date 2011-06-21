@@ -9,8 +9,8 @@ class FailFast
 
 end
 
-Dir.glob(File.dirname(__FILE__) + '/fail_fast/base/*.rb'      ) {|file| require file }
-Dir.glob(File.dirname(__FILE__) + '/fail_fast/extensions/*.rb') {|file| require file }
+Dir.glob(File.dirname(__FILE__) + '/fail_fast/base/*.rb'          ) {|file| require file }
+Dir.glob(File.dirname(__FILE__) + '/fail_fast/commands/*.rb'      ) {|file| require file }
 require 'fail_fast/error_reporter'
 Dir.glob(File.dirname(__FILE__) + '/fail_fast/error_reporter/*.rb') {|file| require file }
 
