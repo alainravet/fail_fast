@@ -166,11 +166,13 @@ If it fails, you'll get a report like this :
         ...                 # errors only reported to stdout
 	end
     ...
+    require 'hoptoad_notifier'
 	FailFast.report_to :hoptoad => '<your-api-token>'       # <- add this in your FF script
     ...
     FailFast().check do
         ...                 # errors are (also) reported to your Hoptoad account
 	end
+
 
 
 ### Example 5b : send errors report to Exceptional (http://getexceptional.com)

@@ -18,8 +18,8 @@ module VCR
       #   describe HttpFoo do
       #     store_vcr_cassettes_next_to(__FILE__)
       #
-      def store_vcr_cassettes_next_to(base)
-        new_location = File.join File.dirname(base), '_vcr_cassette_library'
+      def store_vcr_cassettes_next_to(base, dirname = '_vcr_cassette_library')
+        new_location = File.join File.dirname(base), dirname
         store_vcr_cassettes_in(new_location)
       end
 

@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
-describe FailFast::ErrorReporter::Hoptoad do
+describe FailFast::ErrorReporter::HoptoadRaw do
   store_vcr_cassettes_next_to(__FILE__)
 
   let(:request_for_1_error_in_1_block){
@@ -23,7 +23,7 @@ describe FailFast::ErrorReporter::Hoptoad do
   after  { Timecop.return             ; } #restore_stdout}
   before do
     @api_key  = VALID_HOPTOAD_API_KEY
-    @reporter = FailFast.report_to(:hoptoad => @api_key).first
+    @reporter = FailFast.report_to(:hoptoad_raw => @api_key).first
   end
 
 #--------------------------------------------------------

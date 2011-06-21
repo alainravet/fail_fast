@@ -1,6 +1,6 @@
 module FailFast::ErrorReporter
-  class Hoptoad < Base
-    REQUEST_ERB_TEMPLATE = File.join(File.dirname(__FILE__), 'hoptoad', 'post_error_request.xml.erb')
+  class HoptoadRaw < Base
+    REQUEST_ERB_TEMPLATE = File.join(File.dirname(__FILE__), 'hoptoad_raw', 'post_error_request.xml.erb')
 
     attr_reader :response
 
@@ -9,7 +9,7 @@ module FailFast::ErrorReporter
     end
 
     def self.to_sym
-      :hoptoad
+      :hoptoad_raw
     end
 
     def report(errors, context)
@@ -37,4 +37,4 @@ module FailFast::ErrorReporter
   end
 end
 
-FailFast::ErrorReporter::Registry.register(FailFast::ErrorReporter::Hoptoad)
+FailFast::ErrorReporter::Registry.register(FailFast::ErrorReporter::HoptoadRaw)

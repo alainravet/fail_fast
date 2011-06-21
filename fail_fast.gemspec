@@ -31,4 +31,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'timecop'
   s.add_development_dependency 'vcr'
   s.add_development_dependency 'exceptional'
+  s.add_development_dependency 'hoptoad_notifier'
 end
