@@ -1,7 +1,7 @@
 Dir.glob(File.dirname(__FILE__) + '/support/*.rb'   ) {|file| require file }
 
 class FailFast
-  module Base
+  module BaseCommands
     def self.included(base)
       base.extend(ClassMethods)
     end
@@ -55,7 +55,7 @@ class FailFast
 end
 
 # -------------------------------- Class methods --------------------------------
-module FailFast::Base
+module FailFast::BaseCommands
   module ClassMethods
     def fail_now
       exit(1) unless errors_db.keys.empty?
@@ -69,4 +69,4 @@ module FailFast::Base
 end
 
 
-FailFast.send  :include, FailFast::Base
+FailFast.send  :include, FailFast::BaseCommands
