@@ -1,6 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe FailFast::ErrorReporter::Hoptoad do
+  store_vcr_cassettes_next_to(__FILE__)
 
   let(:request_for_1_error_in_1_block){
     a_request(:post, 'http://hoptoadapp.com/notifier_api/v2/notices').

@@ -1,5 +1,14 @@
+Dir.glob(File.dirname(__FILE__) + '/support/*.rb'   ) {|file| require file }
+
 class FailFast
-  module Base
+  module BaseCommands
+    def self.included(base)
+      base.extend(ClassMethods)
+    end
+
+
+# ------------------------------ Instance methods -------------------------------
+
     def check(&block)
       fail_now_mode   = block_given? # false in the case of  *.check_now.but_fail_now do .. end
 
@@ -45,4 +54,19 @@ class FailFast
   end
 end
 
-FailFast.send  :include, FailFast::Base
+# -------------------------------- Class methods --------------------------------
+module FailFast::BaseCommands
+  module ClassMethods
+    def fail_now
+      exit(1) unless errors_db.keys.empty?
+    end
+
+    def failed?
+      !global_errors.empty?
+    end
+
+  end
+end
+
+
+FailFast.send  :include, FailFast::BaseCommands

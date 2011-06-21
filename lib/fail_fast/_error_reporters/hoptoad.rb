@@ -8,6 +8,10 @@ module FailFast::ErrorReporter
       @api_key = api_key
     end
 
+    def self.to_sym
+      :hoptoad
+    end
+
     def report(errors, context)
       require 'net/http'
       uri = URI.parse('http://hoptoadapp.com/notifier_api/v2/notices')
@@ -32,3 +36,5 @@ module FailFast::ErrorReporter
 
   end
 end
+
+FailFast::ErrorReporter::Registry.register(FailFast::ErrorReporter::Hoptoad)

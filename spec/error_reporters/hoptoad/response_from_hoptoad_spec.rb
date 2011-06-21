@@ -1,11 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe FailFast::ErrorReporter::Hoptoad do
+  store_vcr_cassettes_next_to(__FILE__)
 
   context 'when the API token is invalid' do
     use_vcr_cassette :record => :new_episodes
     before do
-      FailFast.send :reset_global_error_reporters
+      FailFast.send :reset_activated_error_reporters
       @api_key  = INVALID_HOPTOAD_API_KEY
       @reporter = FailFast.report_to(:hoptoad => @api_key).first
     end
@@ -21,7 +22,7 @@ describe FailFast::ErrorReporter::Hoptoad do
     use_vcr_cassette :record => :new_episodes
 
     before do
-      FailFast.send :reset_global_error_reporters
+      FailFast.send :reset_activated_error_reporters
       @api_key  = VALID_HOPTOAD_API_KEY
       @reporter = FailFast.report_to(:hoptoad => @api_key).first
     end
