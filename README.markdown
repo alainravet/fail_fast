@@ -160,7 +160,7 @@ If it fails, you'll get a report like this :
 	end
 
 
-### Example 5 : also sending errors report to Hoptoad (http://hoptoadapp.com)
+### Example 5a : send errors report to Hoptoad (http://hoptoadapp.com)
 
     FailFast().check do
         ...                 # errors only reported to stdout
@@ -169,9 +169,28 @@ If it fails, you'll get a report like this :
 	FailFast.report_to :hoptoad => '<your-api-token>'       # <- add this in your FF script
     ...
     FailFast().check do
-        ...                 # errors also reported to your Hoptoad account
+        ...                 # errors are (also) reported to your Hoptoad account
 	end
 
+
+### Example 5b : send errors report to Exceptional (http://getexceptional.com)
+
+    FailFast().check do
+        ...                 # errors only reported to stdout
+	end
+    ...
+    require 'exceptional'                                       # <- add this in your FF script
+	FailFast.report_to :exceptional => '<your-api-token>'       # <- add this in your FF script
+    ...
+    FailFast().check do
+        ...                 # errors are (also) reported to your Hoptoad account
+	end
+
+
+Remark : Error reporters
+
+- :stdout is the default (cannot be disabled)
+- you can combine the error reporters (ex: stdout + :hoptoad + :exceptional)
 
 
 ## Info :
