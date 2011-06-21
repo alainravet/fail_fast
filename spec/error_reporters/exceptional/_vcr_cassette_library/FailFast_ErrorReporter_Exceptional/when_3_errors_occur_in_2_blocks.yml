@@ -1,0 +1,101 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :post
+    uri: http://plugin.getexceptional.com:80/api/errors?api_key=a508c1bb4d013ad68c9d4bf707dc24b3eebfc4f7&hash=0e09b5f17ba4673c35ca8292d0674ccc&protocol_version=5
+    body: !binary |-
+      eAG1VlFv2kgQ/iuWX/qQ2GsbQhI/nQFDaDFQbNqmp9NqbS/Eje211jaBVvnv
+      N2MIcA2VrtGdhICdnZ3Z+eabmf2hRmnC80q1f6g5y7hqqyte8U3EiyoROUu1
+      Fc/US3XNZQlr2LZ0Q29ZICqkqEQkUnrYu3q+VFlRpEnE8DDl+TqRIs/29v+x
+      VGO+5qkoms1LFfbwCt3FpD92aXc0oTMnuAN3ZFGCa8IkI7pcZwSuUxJZh1vN
+      1G91SyvMG+OPJUvSJSur3W5Y53HKJSgYunlFwiQnOxFceuh6b7Js/6t7rFIR
+      shTcRCLTEQmuf2Nrpn9bZ56IEdw92pcvkb4lSrBPaW9AF747p4H7JaDupDft
+      jyZDcGBszMGVbdi3JqiNp8OJ47kgBvxg/d755NDxqDt35vcHGJxjxkoyB2S9
+      JOeaaVzrVsfEKEhP5BXkEHZ5KWoZ8ZK8h7Bs4m/LimdknISSyS2ZyWTNKj6Q
+      QKQnIR93aif2x6zOowcu9eWLytEkXG++6N7D7f6TrKdJaJMT178ITYak4mWV
+      5CtSsCp6IJC5TORvOhrGMQTh+3fUWQR31J/2PmAoVVaQtAlcu334fHs/BLwA
+      thxoDerePcWw6d20ydPPNAOmJwD3T4SHc1gHHMpWfeE+ur5zx2N02VCelQ8g
+      C7xZfzRH4ZpJshRpjOUklvDpe/k34+MwYF/GF97X9sfrGV9cXFwEI6IFWaER
+      tOj2FvNRcO+7vj+aTkZ9MGS1b6OoA5tv4S5e7VUtnQ/yrOrZ8t+V3Vn9xl1d
+      yt3mYVU2//Ab4qDD6XQIXWc4GvchGZNg5Ll0MIfC+Tydf6BO15+OF4HbFAxF
+      JF/4PhRilXJywvdhksZHcoNt7De/SO3ZUE6y2Zt6njPpU2/axwqu82RjGUYL
+      jPZH/mzs3ONVTsj1/fPq1jCIkCt9YxugFriO14Pk0bnzwcXAJtAv9taSmGND
+      wBYCZnbdAXk4nQWw1uS+hxLgWF2A4uuGFrDyEVS7TbONodJA61WkIMMa5HRW
+      h34dUl9Ej7yic54DDX+6f7y2uk4NDaHZO3RIQHAwGiMC5JNI6wyqIZaiCMWG
+      9Pe/MEpIthUlQfRoMwiGPFsmKQf/MDQolg8tKwllDnZeF9NZpACb/pEGPhy0
+      ZVnwSIUp9yBKrD2vO9N8v6tZbSPUWnoqoqb7yzqnrKQ1TC5Q2oHLjl2WSiEq
+      GieSR5WQW1D5jcggopTlq5qtcJxgKCeS4yhWm+mo4HRULMM0NcPSzBtlc9Oh
+      nbYWM/mU5KahX+tIlEM3BotorWnn0HZoKljMYxzMkj2iPwNnLqiwqErWvKyL
+      QkgEwtJbunncgMiEhHMn8jiWvCxZCDlBsaVjBwnL5klh4un9kvINGjyIdrO8
+      keA0B61IsgiZB0v9Btb7JZ7AYE7eLo2n/WvlQI3mZKdRhUa/Eo3pnf9denfO
+      MZgqySCQojnR0tH3OsKMmjpAh76eeJgBoxtRR2+rz0CNg3+E7bCgUcrKEhQH
+      QNEBPFVs25VSyDlHBLmE5fHNtd8DB8D2cpfpl3MKx2NKkiu/QRqCvCWULJNN
+      VUMeCM+KaqtvM3yrhABnBSBCYv7EalVyUSkiV2AePii2oijv2Hcuq22diOKd
+      rv51qYooqqXkMWVN7ht6dTTLDMy23b6yW62vWCPgJ6o5DaEqAKHD8/L/CuT5
+      +W/DXnsk
+    headers: !!null 
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/0.7.67
+      date:
+      - Tue, 21 Jun 2011 14:45:33 GMT
+      content-type:
+      - text/html
+      content-length:
+      - '0'
+    body: !!null 
+    http_version: '1.1'
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :post
+    uri: http://plugin.getexceptional.com:80/api/errors?api_key=a508c1bb4d013ad68c9d4bf707dc24b3eebfc4f7&hash=7de9ecbacc52a7b0a526098041646e5e&protocol_version=5
+    body: !binary |-
+      eAG1Vm1z2jgQ/iuMv/RDYss2hCZ8OgOG0GKg2DRNrzca2RbEjW15JJtCe/nv
+      t2sIcEk602buZhhA0r5on312Vz+0KE14XmqdH1rOMq51tBUv+SbiRZmInKX6
+      imfaubbmUsEajm3DNJo2bBVSlCISKT2cXTyca6wo0iRiqEx5vk6kyLO9/X8t
+      tZiveSqK+vBcgzO8Qncx6Y9d2h1N6MwJrsEdWShwTZhkxJDrjMB1FJFVuNUt
+      48qw9cK6NP9YsiRdMlXuTsMqj1MuQcA0rAsSJjnZbcGlh673KsudX7rHKhUh
+      S8FNJDIDkeDGV7Zmxtd15okYwd2jff4Y6WuiBPuU9gZ04btzGrifAupOetP+
+      aDIEB+bGGlx0zM6VBWLj6XDieC5sA36wfud8dOh41J0789sDDM4xY4rMAVkv
+      yblumW8Nu21hFKQn8hJyCKdciUpGXJF3EFaH+FtV8oyMk1AyuSUzmaxZyQcS
+      iPRNyPud2In9Mavy6I5LY/kocjQJ15svurdwu/8k62kSdsiJ65+EJkNSclUm
+      +YoUrIzuCGQuE/mrVMM4hiB8/5o6i+Ca+tPeewylzAqS1oHrV3c3V7dDwAtg
+      y4HWIO7dUgybXk/rPD2lGTA9AbifEB70sA44lK32yH10fe2Ox+iypjxTd7AX
+      eLP+aI6baybJUqQxlpNYwqfv5V/ND8OAfRqfeZ9bH97O+OLs7CwYET3ICp2g
+      Rbe3mI+CW9/1/dF0MuqDIbt1FUVtOHwNd/Fqz2rp5SBfFH2x/Hdl96J87a5S
+      cnd4WKn6H35DHHQ4nQ6h6wxH4z4kYxKMPJcO5lA4N9P5e+p0/el4Ebh1wVBE
+      8pHvQyFWKScnfB8maXwkN9jGfvOT1L4Yykk2e1PPcyZ96k37WMFVnmxs02yC
+      0f7In42dW7zKCbm+36yuTJMIuTI2HRPEAtfxepA8OnfeuxjYBPrF3loSc2wI
+      2ELAzK47IA+nswDWutz3UAIcqwoQfN7QAqbuQbRbN9sYKg2knkUKe1iDnM6q
+      0K9C6ovonpd0znOg4ZP7x2u761TQEOqzQ4cEBAejMSJAPoq0yqAaYimKUGxI
+      f/8Lo4RkW6EIokfrQTDk2TJJOfiHoUGxfKgqJZQ52HleTC8iBdj0jzTwQbEj
+      VcEjDabcnVBYe153pvt+V7dbZqg3jVREdfeXVU6ZohVMLhDagcuOXZZKIUoa
+      J5JHpZBbEPmNyCCilOWriq1wnGAoJzvHUazV07GB07Fhm5alm7ZuXTY2l23a
+      bukxk9+S3DKNtwYS5dCNwSJaq9s5tB2aChbzGAezZPfoz8SZCyIsKpM1V1VR
+      CIlA2EbTsI4HEJmQoHeyH8eSK8VCyAlu2wZ2kFDVTwoLtfdLyjdo8LC1m+X1
+      Dk5zkIoki5B5sDQuYb1fogYGc/J2qT3tXysHatSa7VoUGv1K1KZ3/nfp3TnH
+      YMokg0CKWqNpoO91hBm1DIAOfX3jYQaMrrfaRkt7AGoc/CNshwWNUqYUCA6A
+      ogN4qnQ6rpRCzjkiyCUsj2+u/Rk4ALarXaYf9Roc1RpJ3vgN0hDkLaFkmWzK
+      CvJAVJLh42Sb4WMlBDxLQBEy86eWqZXufMn/bniJUlAvjTVLK95oLMFpeccb
+      93zbeMPyLfxS643xJUeF7i8q2G8M7a9zTURRJSWPKau5U9OzrdtWYLU6rYtO
+      s/kZawzuGVWchlBVgPDhefq/AfHw8A+yS5I4
+    headers: !!null 
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/0.7.67
+      date:
+      - Tue, 21 Jun 2011 14:45:34 GMT
+      content-type:
+      - text/html
+      content-length:
+      - '0'
+    body: !!null 
+    http_version: '1.1'

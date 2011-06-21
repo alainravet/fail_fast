@@ -1,0 +1,51 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :post
+    uri: http://plugin.getexceptional.com:80/api/errors?api_key=a508c1bb4d013ad68c9d4bf707dc24b3eebfc4f7&hash=7de9ecbacc52a7b0a526098041646e5e&protocol_version=5
+    body: !binary |-
+      eAG1Vm1z2jgQ/iuMv/RDYst2Epr40xkwhBYDxaZper3RyLYgbmzLI9kU2st/
+      v11DgEvSmTZzN8MAkvZF++yzu/qhxVnKi0pzfmgFy7nmaEte8XXMyyoVBcv0
+      Jc+1U23FpYI1HNuGaZzZsFVKUYlYZHR/dvFwqrGyzNKYoTLlxSqVosh39v+1
+      1BK+4pkom8NTDc7wCp35uDfyaGc4plM3vAZ3ZK7ANWGSEUOucgLXUUTW0Ua3
+      jCvD1kvr0vxjwdJswVS1PY3qIsm4BAHTsC5IlBZkuwWXHnj+qyw7v3SPZSYi
+      loGbWOQGIsGNr2zFjK+r3BcJgrtD+/Qx0tdECfYp7fbpPPBmNPQ+hdQbdye9
+      4XgADsy11b9wTOfKArHRZDB2fQ+2AT9Yv3M/unQ07Mzc2e0eBveQMUVmgKyf
+      Fly3zLeG3bYwCtIVRQU5hFOuRC1jrsg7CMshwUZVPCejNJJMbshUpitW8b4E
+      In0T8n4rdmR/xOoivuPSWDyKHEzC9Wbzzi3c7j/JepZGDjly/ZPQZEQqrqq0
+      WJKSVfEdgczloniVapQkEEQQXFN3Hl7TYNJ9j6FUeUmyJnD96u7m6nYAeAFs
+      BdAaxP1bimHT60mTp6c0A6anAPcTwoMe1gGHstUeuY+ur73RCF02lGfqDvZC
+      f9obznBzxSRZiCzBchIL+PT84qv5YRCyT6MT//P5h7dTPj85OQmHRA/zUido
+      0evOZ8PwNvCCYDgZD3tgyD6/iuM2HL6Gu3i1Z7X0cpAvir5Y/tuye1G+cVcr
+      uT3cr1TzD78hDjqYTAbQdQbDUQ+SMQ6Hvkf7Myicm8nsPXU7wWQ0D72mYCgi
+      +cj3gRDLjJMjvg/SLDmQG2xjv/lJal8M5Sib3Ynvu+Me9Sc9rOC6SNe2aZ6B
+      0d4wmI7cW7zKEbm+3yyvTJMIuTTWjglioef6XUgenbnvPQxsDP1iZy1NODYE
+      bCFgZtsdkIeTaQhrXe56KAGO1SUIPm9oIVP3INppmm0ClQZSzyKFPaxBTqd1
+      FNQRDUR8zys64wXQ8Mn9k5XdcWtoCM3ZvkMCgv3hCBEgH0VW51ANiRRlJNak
+      t/uFUULyjVAE0aPNIBjwfJFmHPzD0KBYPlRVEsoc7DwvpheRAmx6BxoEoOhI
+      VfJYgyl3JxTWnt+Z6kHQ0e1zM9LPjEzETfeXdUGZojVMLhDagssOXZZKISqa
+      pJLHlZAbEPmNyCCijBXLmi1xnGAoRzuHUaw107GF07Flm5alm7ZuXbbWl23a
+      PtcTJr+lhWUabw0kyr4bg0W01rRzaDs0EyzhCQ5mye7Rn4kzF0RYXKUrruqy
+      FBKBsI0zwzocQGRCgt7RfpJIrhSLICe4bRvYQSLVPCks1N4tKV+jwf3WdpY3
+      OzjNQSqWLEbmwdK4hPVuiRoYzNHbpfG0e63sqdFothtRaPRL0Zje+t+md+sc
+      g6nSHAIpG40zA32vYsyoZQB06Osbj3JgdLPVNs61B6DG3j/Ctl/QOGNKgWAf
+      KNqHp4rjeFIKOeOIIJewPLy5dmfgANiutpl+1GtxVGulRes3SEOQt4SSRbqu
+      asgDUWmOj5NNjo+VCPCsAEXIzJ9arpa6+6X4u+WnSkG9tFYsq3mrtQCn1R1v
+      3fNN6w0rNvBLrTfGlwIVOr+oYL8xtL9ONRHHtZQ8oazhTkPPtm5boXXunF06
+      1sVnrDG4Z1xzGkFVAcL75+n/BsTDwz+zPpI6
+    headers: !!null 
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx/0.7.67
+      date:
+      - Tue, 21 Jun 2011 14:38:16 GMT
+      content-type:
+      - text/html
+      content-length:
+      - '0'
+    body: !!null 
+    http_version: '1.1'
