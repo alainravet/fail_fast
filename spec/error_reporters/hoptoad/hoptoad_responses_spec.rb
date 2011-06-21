@@ -1,6 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe FailFast::ErrorReporter::Hoptoad do
+  store_vcr_cassettes_next_to(__FILE__)
 
   context 'when the API token is invalid' do
     use_vcr_cassette :record => :new_episodes
