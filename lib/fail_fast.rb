@@ -4,7 +4,6 @@ require 'erb'
 require File.expand_path(File.dirname(__FILE__) + '/fail_fast/support/error_db')
 class FailFast
 
-  @@_errors_db = FailFast::ErrorDb.new
 
   def initialize(config_file_path=nil, keys_prefix=nil)
     @config_file_path = config_file_path
@@ -23,21 +22,7 @@ class FailFast
       !global_errors.empty?
     end
 
-    def errors_db #:nodoc:
-      @@_errors_db
-    end
-
   end
-
-
-  def add_error(value)
-    @@_errors_db.append(@errors_key, value)
-  end
-
-  def errors
-    @@_errors_db.errors_for(@errors_key)
-  end
-
 
 end
 
