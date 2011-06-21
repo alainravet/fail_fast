@@ -1,3 +1,5 @@
+require 'fail_fast/error_reporter/registry'
+
 class FailFast
   module ErrorReporter
     # Input :
