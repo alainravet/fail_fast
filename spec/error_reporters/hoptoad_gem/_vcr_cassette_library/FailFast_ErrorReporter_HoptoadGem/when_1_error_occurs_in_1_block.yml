@@ -1,0 +1,35 @@
+---
+- !ruby/struct:VCR::HTTPInteraction
+  request: !ruby/struct:VCR::Request
+    method: :post
+    uri: http://hoptoadapp.com:80/notifier_api/v2/notices/
+    body: <?xml version="1.0" encoding="UTF-8"?><notice version="2.0"><api-key>YOUR-API-KEY-YERE-db7caf200463760b005ecdb26c978eea</api-key><notifier><name>Hoptoad
+      Notifier</name><version>2.4.11</version><url>http://hoptoadapp.com</url></notifier><error><class>FailFast
+      Error</class><message>FailFast error in /Volumes/dropbox/Dropbox/dev/myos/fail_fast/spec/_/fixtures/empty.yml</message><backtrace><line
+      number="1" file="App not on path _   'azertyuiop'." method="/Volumes/dropbox/Dropbox/dev/myos/fail_fast/spec/_/fixtures/empty.yml"/></backtrace></error><server-environment><project-root></project-root><environment-name></environment-name><hostname>MBP-SSB-240b-3.local</hostname></server-environment></notice>
+    headers:
+      content-type:
+      - text/xml
+      accept:
+      - text/xml, application/xml
+  response: !ruby/struct:VCR::Response
+    status: !ruby/struct:VCR::ResponseStatus
+      code: 200
+      message: OK
+    headers:
+      content-type:
+      - text/xml
+      transfer-encoding:
+      - chunked
+      status:
+      - '200'
+      x-powered-by:
+      - Phusion Passenger (mod_rails/mod_rack) 3.0.6
+      x-runtime:
+      - '0.415872'
+      server:
+      - nginx/0.8.54 + Phusion Passenger 3.0.6 (mod_rails/mod_rack)
+    body: ! "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<notice>\n  <error-id type=\"integer\">8351593</error-id>\n
+      \ <url>http://failfast.hoptoadapp.com/errors/8351593/notices/1474523453</url>\n
+      \ <id type=\"integer\">1474523453</id>\n</notice>\n"
+    http_version: '1.1'
