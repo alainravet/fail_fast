@@ -12,7 +12,10 @@ module FailFast::ErrorReporter
     end
 
     def report(errors, context)
-      msg = "FailFast error in #{context[:config_file_path]}"
+      path = context[:config_file_path]
+      path = File.basename(path) if $fail_fast_shorten_path_in_reports
+
+      msg = "FailFast error in #{path}"
       backtrace = errors.collect {|e| default_message_for(e, false)}.join("\n")
       notify_hoptoad(msg, backtrace)
     end

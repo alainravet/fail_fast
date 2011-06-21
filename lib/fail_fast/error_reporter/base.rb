@@ -37,4 +37,5 @@ module FailFast::ErrorReporter
       def kcol(key) @use_color ? yellow(key) : key end
       def vcol(val) @use_color ? yellow(val) : val end
   end
+
 end

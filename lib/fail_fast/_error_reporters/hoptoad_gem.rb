@@ -12,15 +12,16 @@ module FailFast::ErrorReporter
     end
 
     def report(errors, context)
-      msg       = "FailFast error in #{context[:config_file_path]}"
-      backtrace = errors_to_backtrace(errors, context)
+      path = context[:config_file_path]
+      path = File.basename(path) if $fail_fast_shorten_path_in_reports
+
+      msg       = "FailFast error in #{path}"
+      backtrace = errors_to_backtrace(errors, path)
       notify_hoptoad(msg, backtrace)
     end
 
   private
-
-    def errors_to_backtrace(errors, context)
-      path = context[:config_file_path]
+    def errors_to_backtrace(errors, path)
       [].tap do |traces|
         errors.each_with_index do |error, i|
           error_as_trace_path = default_message_for(error, false)
@@ -40,7 +41,7 @@ module FailFast::ErrorReporter
       ::HoptoadNotifier.notify(
         :error_class   => "FailFast Error",
         :error_message => msg,
-        :backtrace     => backtrace
+        :backtrace     => backtrace,
       )
     end
   end
