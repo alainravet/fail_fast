@@ -1,4 +1,7 @@
-require 'exceptional'
+begin
+  require 'exceptional'
+rescue LoadError
+end
 
 module FailFast::ErrorReporter
   class Exceptional < Base

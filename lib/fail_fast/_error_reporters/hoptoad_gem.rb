@@ -1,4 +1,7 @@
-require 'hoptoad_notifier'
+begin
+  require 'hoptoad_notifier'
+rescue LoadError
+end
 
 module FailFast::ErrorReporter
   class HoptoadGem < Base
